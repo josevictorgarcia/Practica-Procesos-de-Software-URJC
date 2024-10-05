@@ -1,3 +1,32 @@
+// Función para mostrar el botón "Ver Todos" si es necesario
+function updateVerTodosButtonVisibility(section) {
+    const gamesRow = section.querySelector('.games-row');
+    const gameCards = gamesRow.querySelectorAll('.game-card');
+    
+    // Calcular el ancho total de todos los game-cards
+    let totalWidth = 0;
+    gameCards.forEach(card => {
+        totalWidth += card.offsetWidth; // Ancho de cada tarjeta
+    });
+
+    // Comparar el ancho total con el ancho visible de gamesRow
+    const visibleWidth = gamesRow.clientWidth;
+
+    // Mostrar el botón "Ver Todos" si el ancho total excede el ancho visible
+    const verTodosButton = section.querySelector('.ver-todos');
+    // Verificar si se debe mostrar el botón
+    if (totalWidth > visibleWidth || verTodosButton.textContent === 'Ocultar Todo') {
+        verTodosButton.style.display = 'inline-block'; // Mostrar el botón
+    } else {
+        verTodosButton.style.display = 'none'; // Ocultar el botón si hay espacio suficiente
+    }
+}
+
+// Inicializar la visibilidad del botón al cargar la página
+document.querySelectorAll('section').forEach(section => {
+    updateVerTodosButtonVisibility(section);
+});
+
 // Manejo del botón "Ver Todos"
 const verTodosButtons = document.querySelectorAll('.ver-todos');
 verTodosButtons.forEach(button => {
@@ -23,9 +52,18 @@ verTodosButtons.forEach(button => {
                 card.className += ' col-6 col-lg-3'; // Restaura las clases originales en modo flex
             }
         });
+        
+        // Actualiza la visibilidad del botón "Ver Todos" después de alternar
+        updateVerTodosButtonVisibility(event.target.closest('section'));
     });
 });
 
+// Manejar el cambio de tamaño de la ventana para actualizar el botón
+window.addEventListener('resize', () => {
+    document.querySelectorAll('section').forEach(section => {
+        updateVerTodosButtonVisibility(section);
+    });
+});
 
 // Manejo de flechas de desplazamiento
 const arrows = document.querySelectorAll('.arrow');
