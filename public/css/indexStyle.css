@@ -70,6 +70,37 @@ body {
     margin-bottom: 30px;
 }
 
+/* Category Titles */
+h3 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* Estilo para la barra de desplazamiento en navegadores WebKit (Chrome, Safari, Edge) */
+.games-row::-webkit-scrollbar {
+    width: auto; /* Ancho de la barra de desplazamiento */
+    height: .7rem;
+    overflow: hidden; /* Oculta la barra de desplazamiento */
+}
+
+.games-row::-webkit-scrollbar-track {
+    background: #ffffff00; /* Color del fondo de la barra */
+}
+
+.games-row::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Color de la barra de desplazamiento */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.games-row::-webkit-scrollbar-thumb:hover {
+    background-color: #cacacb; /* Color al pasar el mouse */
+}
+
+/* Estilo para la barra de desplazamiento en Internet Explorer 10+ */
+.games-row {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Oculta la barra de desplazamiento cuando no se utiliza */
+}
+
 /* Media Queries for Better Responsiveness */
 @media (max-width: 768px) {
     .buttonNavBar {
