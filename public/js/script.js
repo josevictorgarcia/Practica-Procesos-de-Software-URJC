@@ -2,11 +2,17 @@
 const verTodosButtons = document.querySelectorAll('.ver-todos');
 verTodosButtons.forEach(button => {
     button.addEventListener('click', (event) => {
-        // Obtiene la sección de juegos correspondiente
         const gamesRow = event.target.closest('section').querySelector('.games-row');
 
         // Cambia la clase para activar el grid o flex
         gamesRow.classList.toggle('grid'); // Alterna entre flex y grid
+
+        // Cambia el texto del botón
+        if (gamesRow.classList.contains('grid')) {
+            event.target.textContent = 'Ocultar Todo'; // Cambia a "Ocultar Todo"
+        } else {
+            event.target.textContent = 'Ver Todos'; // Restaura a "Ver Todos"
+        }
 
         // Cambia la clase de todos los elementos .game-card
         const gameCards = gamesRow.querySelectorAll('.game-card');

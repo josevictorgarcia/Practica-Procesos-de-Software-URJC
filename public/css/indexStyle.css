@@ -119,7 +119,7 @@ h3 {
 
 /* Botón "Ver todos" */
 .ver-todos {
-    margin-top: 10px;
+    margin-left: 10px;
     cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
 }
 
