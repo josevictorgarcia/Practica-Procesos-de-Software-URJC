@@ -1,51 +1,84 @@
-.background1{
+/* General */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+/* Background */
+.background1 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     background-color: black;
+    min-height: 100vh;
 }
 
-.navBar1{
-    min-height: 50px;
-    max-height: 50px;
-    width: 100%;
+/* Logo */
+#logoCasino {
+    height: 80px;
+    max-width: 100%;
+}
+
+/* Navigation Bar */
+.navBar1 {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    gap: 20px;
+    padding: 10px;
 }
 
-.buttonNavBar{
-    padding: 10px;
-    max-height: 50px;
-    width: 25%;
+.buttonNavBar {
+    padding: 10px 20px;
     color: white;
-    border: solid 1px white;
+    border: 2px solid white;
     border-radius: 6px;
     text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
 }
 
-.buttonNavBar:hover{
-    color: black;
+.buttonNavBar:hover {
     background-color: white;
-    transition: .5s;
-}
-
-.card{
-    background-color: rgb(19, 181, 19);
     color: black;
 }
 
-.card-img{
-    max-height: 25vh;
+/* Card Styles */
+.card {
+    background-color: #1e7e34;
+    color: white;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-#logoCasino{
-    min-height: 50px;
-    max-height: 50px;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-#catalogoJuegos{
+.card-img-top {
+    width: 100%;       /* Asegura que la imagen use todo el ancho del contenedor */
+    height: 200px;     /* Establece una altura fija para todas las imágenes */
+    object-fit: cover; /* Cubre el área del contenedor, recortando la imagen si es necesario */
+}
+
+
+/* Catalog Container */
+#catalogoJuegos {
     margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Media Queries for Better Responsiveness */
+@media (max-width: 768px) {
+    .buttonNavBar {
+        width: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-img-top {
+        max-height: 150px;
+    }
 }
