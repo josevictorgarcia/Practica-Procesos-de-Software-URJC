@@ -99,6 +99,23 @@ h3 {
 /* Estilo para la barra de desplazamiento en Internet Explorer 10+ */
 .games-row {
     -ms-overflow-style: -ms-autohiding-scrollbar; /* Oculta la barra de desplazamiento cuando no se utiliza */
+    overflow-x: auto;  /* Permite el desplazamiento horizontal */
+    white-space: nowrap; /* Evita el salto de línea */
+    padding: 10px 0; /* Espaciado vertical */
+    position: relative; /* Para posicionar flechas */
+    display: flex; /* Asegura que los hijos se alineen horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+
+.game-card {
+    display: inline-block; /* Asegura que las tarjetas se alineen horizontalmente */
+    margin-right: 15px; /* Espacio entre las tarjetas */
+}
+
+/* Botón "Ver todos" */
+.ver-todos {
+    margin-top: 10px;
+    cursor: pointer; /* Cambia el cursor a mano al pasar sobre el botón */
 }
 
 /* Media Queries for Better Responsiveness */
