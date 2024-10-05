@@ -102,13 +102,18 @@ h3 {
     overflow-x: auto;  /* Permite el desplazamiento horizontal */
     white-space: nowrap; /* Evita el salto de línea */
     padding: 10px 0; /* Espaciado vertical */
-    position: relative; /* Para posicionar flechas */
+    position: relative; /* Para posicionar flechas (opcionalmente)*/
     display: flex; /* Asegura que los hijos se alineen horizontalmente */
     align-items: center; /* Centra los elementos verticalmente */
 }
+.games-row.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta el tamaño según sea necesario */
+    gap: 15px; /* Espacio entre las tarjetas */
+}
 
 .game-card {
-    display: inline-block; /* Asegura que las tarjetas se alineen horizontalmente */
+    display: inline-flex; /* Asegura que las tarjetas se alineen horizontalmente */
     margin-right: 15px; /* Espacio entre las tarjetas */
 }
 
