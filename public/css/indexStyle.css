@@ -10,14 +10,27 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
+    background-color: #2C2C2C;
     min-height: 100vh;
+}
+
+/* Cabecera de la web */
+.pageTop{
+    background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
+    background-size:auto;
+    background-position: center; 
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Logo */
 #logoCasino {
     height: 80px;
     max-width: 100%;
+    border-radius: 7px;
 }
 
 /* Navigation Bar */
@@ -26,6 +39,27 @@ body {
     justify-content: center;
     gap: 20px;
     padding: 10px;
+    flex-wrap: wrap;
+}
+
+/* Perfil en la cabecera */
+.userProfile{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.userProfile img {
+    width: 50px; /* Tamaño de la imagen del perfil */
+    height: 50px;
+    border-radius: 50%; /* Hace la imagen circular */
+    margin-right: 10px; /* Espacio entre la imagen y el nombre */
+  }
+
+.userProfile span {
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
 }
 
 .buttonNavBar {
