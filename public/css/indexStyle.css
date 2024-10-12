@@ -103,13 +103,13 @@ body {
 .submenu li a:hover{
     background-color: #fff;
     color: black;
-    display: flex;
+    display: block;
     -ms-flex-align: center;
     margin-right: auto;
     padding: auto;
     position: relative;
     text-decoration: none;
-  
+    text-align: center;
   }
 
 .submenu li:last-child a{
