@@ -12,7 +12,7 @@
     />
 
     <!-- Custom CSS -->
-    <link href="/css/indexStyle.css" rel="stylesheet" />
+    <link href="/css/newStyle.css" rel="stylesheet" />
 
     <!-- Google Fonts for modern typography -->
     <link
@@ -39,11 +39,10 @@
       />
 
       <nav class="navBar1">
-        <a href="#" class="buttonNavBar">Home</a>
+        <a href="/" class="buttonNavBar">Home</a>
         <a href="#" class="buttonNavBar">Rules</a>
         <a href="#" class="buttonNavBar">Gana pasta</a>
         <a href="#" class="buttonNavBar">About us</a>
-        <a href="/newItem" class="buttonNavBar">New</a>
       </nav>
 
       <div class="userProfile">
@@ -86,104 +85,46 @@
       </div>
     </header>
 
-    <!-- Games Catalog -->
-    <main id="catalogoJuegos" class="container">
-      <!-- Categoría: Juegos de Cartas -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Juegos de Cartas
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-        {{#cartas}}
-        <div class="games-row">
-          <div class="game-card col-6 col-lg-3">
-            <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="{{url}}"
-                  class="stretched-link"
-                  aria-label="Play Blackjack"
-                ></a>
-              </div>
-            </div>
-          </div>
-          <!-- Añade más juegos a esta categoría -->
+    <div class="Formulario">
+        <div class="titulo">
+            <h3 style="margin-bottom: 15px">Introduce un nuevo juego</h3>
         </div>
-        {{/cartas}}
-      </section>
-
-      <!-- Categoría: Juegos de Mesa -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Juegos de Mesa
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-        {{#mesa}}
-        <div class="games-row">
-          <div class="game-card col-6 col-lg-3">
-            <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="{{url}}"
-                  class="stretched-link"
-                  aria-label="Play Ruleta"
-                ></a>
-              </div>
-            </div>
-          </div>
+        <div class="container-fluid">
+            <form class="row" action="/post/edit" method="post" id="tuFormulario">
+                <input type="hidden" name="id" value="{{FormData.id}}">
+                <div class="col-md-12">
+                    <label for="InputNombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="InputNombre"
+                        placeholder="Ejemplo: Poker" name='nombre'>
+                    <div id="nombre" class="invalid-feedback"></div>    
+                </div>
+                <div class="col-md-12">
+                    <label for="InputImagen" class="form-label">Dirección de la
+                        imagen</label>
+                    <input type="text" class="form-control" id="InputImagen" name='imagen'>
+                    <div id="imagen" class="invalid-feedback"></div>  
+                </div>
+                <div class="col-md-12">
+                    <label for="InputUrl" class="form-label">Dirección de la página web</label>
+                    <input type="text" class="form-control" id="InputUrl" name='url'>
+                    <div id="url" class="invalid-feedback"></div>  
+                </div>
+                <div class="col-md-4">
+                    <label for="inputStateTipo" class="form-label">Tipo</label>
+                    <select id="inputStateTipo" class="form-select" name='tipo'>
+                        <option selected disabled>Selecciona Una</option>
+                        <option>Juegos de cartas</option>
+                        <option>Juegos de mesa</option>
+                        <option>Máquinas tragaperras</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success" style="margin-top: 30px">Guardar</button>
+                    <button type="botom" style="margin-top: 30px; margin-left: 17px" class="btn btn-danger"><a href="/">Cancelar</a></button>
+                </div>
+            </form>
         </div>
-        {{/mesa}}
-      </section>
-
-      <!-- Categoría: Máquinas Tragamonedas -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Máquinas Tragamonedas
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-        <div class="games-row">
-          {{#tragaperras}}
-          <div class="game-card col-6 col-lg-3">
-            <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="url"
-                  class="stretched-link"
-                  aria-label="Play Slot Machine"
-                ></a>
-              </div>
-            </div>
-          </div>
-          {{/tragaperras}}
-        </div>
-      </section>
-
-      <!-- Añadir más secciones de juegos si es necesario -->
-    </main>
+    </div>
 
     <!-- Footer -->
     <footer class="footer text-light text-center py-3">

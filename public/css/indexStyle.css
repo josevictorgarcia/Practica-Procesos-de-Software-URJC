@@ -227,3 +227,7 @@ h3 {
     max-height: 150px;
   }
 }
+/*Para que se quede abajo del todo*/
+.footer{
+  bottom: 0;
+}
