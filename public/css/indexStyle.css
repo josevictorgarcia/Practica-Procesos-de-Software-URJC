@@ -24,6 +24,10 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position:fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
 }
 
 #logoContainer{
@@ -164,7 +168,7 @@ body {
 
 /* Catalog Container */
 #catalogoJuegos {
-  margin-top: 30px;
+  margin-top: 130px;
   margin-bottom: 30px;
 }
 
@@ -251,11 +255,17 @@ h3 {
   .pageTop{
     justify-content: center;
   }
+  #catalogoJuegos {
+    margin-top: 200px;
+  }
 }
 
 @media (max-width: 768px) {
   .buttonNavBar {
     width: auto;
+  }
+  #catalogoJuegos {
+    margin-top: 280px;
   }
 }
 
@@ -263,8 +273,10 @@ h3 {
   .card-img-top {
     max-height: 150px;
   }
+  #catalogoJuegos {
+    margin-top: 340px;
+  }
 }
-
 
 /*Para que se quede abajo del todo*/
 .footer{
