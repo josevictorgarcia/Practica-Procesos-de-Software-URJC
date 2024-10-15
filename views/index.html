@@ -23,7 +23,7 @@
     <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="https://i.gifer.com/BVDZ.gif"
+      href="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif"
       type="image/x-icon"
     />
   </head>
@@ -31,13 +31,15 @@
   <body id="main" class="background1">
     <!-- Header and Navigation Bar -->
     <header class="container-fluid text-center py-3 pageTop">
-      <img
-        id="logoCasino"
-        src="https://i.gifer.com/BVDZ.gif"
-        alt="Casino logo"
-        class="mb-2"
-      />
-
+      <div id="logoContainer">
+        <!-- https://i.gifer.com/BVDZ.gif -->
+        <img
+          id="logoArcade"
+          src="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif" 
+          alt="Arcade logo"
+          class="mb-2"
+        />
+      </div>
       <nav class="navBar1">
         <a href="#" class="buttonNavBar">Home</a>
         <a href="#" class="buttonNavBar">Rules</a>
@@ -96,9 +98,10 @@
             Ver Todos
           </button>
         </h3>
-        {{#cartas}}
+        
         <div class="games-row">
-          <div class="game-card col-6 col-lg-3">
+          {{#cartas}}
+          <div class="game-card col-lg-3">
             <div class="card text-center shadow">
               <img
                 class="card-img-top"
@@ -116,8 +119,9 @@
             </div>
           </div>
           <!-- Añade más juegos a esta categoría -->
+          {{/cartas}}
         </div>
-        {{/cartas}}
+        
       </section>
 
       <!-- Categoría: Juegos de Mesa -->
@@ -128,9 +132,10 @@
             Ver Todos
           </button>
         </h3>
-        {{#mesa}}
+    
         <div class="games-row">
-          <div class="game-card col-6 col-lg-3">
+          {{#mesa}}
+          <div class="game-card col-lg-3">
             <div class="card text-center shadow">
               <img
                 class="card-img-top"
@@ -147,8 +152,9 @@
               </div>
             </div>
           </div>
+          {{/mesa}}
         </div>
-        {{/mesa}}
+        
       </section>
 
       <!-- Categoría: Máquinas Tragamonedas -->
@@ -161,7 +167,7 @@
         </h3>
         <div class="games-row">
           {{#tragaperras}}
-          <div class="game-card col-6 col-lg-3">
+          <div class="game-card col-lg-3">
             <div class="card text-center shadow">
               <img
                 class="card-img-top"

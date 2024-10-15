@@ -27,10 +27,19 @@ body {
   }
   
   /* Logo */
-  #logoCasino {
-    height: 80px;
-    max-width: 100%;
+  #logoContainer{
+    height: 100px;
+    max-width: 300px;
     border-radius: 7px;
+    overflow: hidden;
+  }
+  
+  /* Logo */
+  #logoArcade {
+    margin-top: -50px;
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
   }
   
   /* Navigation Bar */
