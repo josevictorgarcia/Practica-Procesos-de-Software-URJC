@@ -55,6 +55,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: right;
+  position: absolute;
   padding: 10px;
   position: relative;
   margin-right: 4%;
@@ -82,7 +83,7 @@ body {
   display: none;
   width: 180px;
   background-color: black;
-
+  z-index: 1000;
 }
 
 .userProfile:hover{
