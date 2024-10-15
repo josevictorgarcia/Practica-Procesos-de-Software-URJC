@@ -35,7 +35,7 @@
         <!-- https://i.gifer.com/BVDZ.gif -->
         <img
           id="logoArcade"
-          src="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif" 
+          src="/img/arcade.jpeg"
           alt="Arcade logo"
           class="mb-2"
         />
@@ -97,16 +97,12 @@
             Ver Todos
           </button>
         </h3>
-        
+
         <div class="games-row">
           {{#cartas}}
           <div class="game-card">
             <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
+              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
               <div class="card-body">
                 <h4>{{nombre}}</h4>
                 <a
@@ -120,7 +116,6 @@
           <!-- Añade más juegos a esta categoría -->
           {{/cartas}}
         </div>
-        
       </section>
 
       <!-- Categoría: Juegos de Mesa -->
@@ -131,16 +126,12 @@
             Ver Todos
           </button>
         </h3>
-    
+
         <div class="games-row">
           {{#mesa}}
           <div class="game-card">
             <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
+              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
               <div class="card-body">
                 <h4>{{nombre}}</h4>
                 <a
@@ -153,7 +144,6 @@
           </div>
           {{/mesa}}
         </div>
-        
       </section>
 
       <!-- Categoría: Máquinas Tragamonedas -->
@@ -168,11 +158,7 @@
           {{#accion}}
           <div class="game-card">
             <div class="card text-center shadow">
-              <img
-                class="card-img-top"
-                src="{{imagen}}"
-                alt="{{nombre}}"
-              />
+              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
               <div class="card-body">
                 <h4>{{nombre}}</h4>
                 <a
@@ -192,7 +178,9 @@
 
     <!-- Footer -->
     <footer class="footer text-light text-center py-3">
-      <div class="footerWords">© 2024 Gamming Zone. Todos los derechos reservados.</div>
+      <div class="footerWords">
+        © 2024 Gamming Zone. Todos los derechos reservados.
+      </div>
     </footer>
 
     <!-- Bootstrap JS -->
