@@ -7,9 +7,9 @@ router.get('/', (req, res) => {
     
     const cartas = boardService.getCartas();
     const mesa = boardService.getMesa();
-    const tragaperras = boardService.getTragaperras();
+    const accion = boardService.getAccion();
 
-    res.render('index', {cartas, mesa, tragaperras})
+    res.render('index', {cartas, mesa, accion})
 
 })
 

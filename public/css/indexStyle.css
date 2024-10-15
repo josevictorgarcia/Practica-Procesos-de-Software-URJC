@@ -82,7 +82,7 @@ body {
   display: none;
   width: 180px;
   background-color: black;
-
+  z-index: 1;
 }
 
 .userProfile:hover{
@@ -144,6 +144,7 @@ body {
 
 /* Card Styles */
 .card {
+  width: 100%;
   background-color: #1e7e34;
   color: white;
   border: none;
@@ -171,15 +172,13 @@ body {
 h3 {
   color: white;
   margin-bottom: 20px;
-  font-family: baskerville;
-  width: bold;
-  padding: 10px 50px; 
-  background: rgb(2,2,2);
-  background: linear-gradient(90deg, rgba(2,2,2,1) 0%, rgba(78,21,21,1) 50%, rgba(0,0,0,1) 100%);
+  padding: 10px 50px;
+  background: linear-gradient(180deg, rgb(60, 60, 60) 0%, rgb(39, 38, 38) 100%);
+  border-radius: 8px;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px; /* Espaciado entre letras */
-  box-shadow: 0 0 15px rgba(66, 0, 0, 0.774), 0 0 25px rgba(148, 139, 139, 0.162); /* Efecto de sombra brillante */
+  /*box-shadow: 0 0 15px rgba(104, 104, 104, 0.774), 0 0 10px rgba(74, 74, 74, 0.162); /* Efecto de sombra brillante */
   position: relative;
   overflow: hidden;
 }
@@ -258,4 +257,10 @@ h3 {
 /*Para que se quede abajo del todo*/
 .footer{
   bottom: 0;
+  background-color: rgb(39, 38, 38);
+  width: 100%;
+}
+
+.footerWords{
+  padding: 50px;
 }
