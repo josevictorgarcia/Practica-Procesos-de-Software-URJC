@@ -225,8 +225,13 @@ a:hover {
 
 /*Para que se quede abajo del todo*/
 .footer{
+  position: relative;
   background-color: rgb(39, 38, 38);
   width: 100%;
+}
+
+.footerWords{
+  padding: 50px;
 }
 
 /*Aqui termina la columna de la derecha (mitad derecha) de la pantalla*/

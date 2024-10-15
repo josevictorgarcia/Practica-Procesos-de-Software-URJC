@@ -271,7 +271,6 @@ h3 {
 
 /*Para que se quede abajo del todo*/
 .footer{
-  bottom: 0;
   background-color: rgb(39, 38, 38);
   width: 100%;
 }
