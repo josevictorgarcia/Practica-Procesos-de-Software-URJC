@@ -171,6 +171,8 @@ body {
 #catalogoJuegos {
   margin-top: 130px;
   margin-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* Category Titles */
@@ -178,7 +180,7 @@ h3 {
   color: white;
   margin-bottom: 20px;
   padding: 10px 50px;
-  background: linear-gradient(180deg, rgb(60, 60, 60) 0%, rgb(39, 38, 38) 100%);
+  background: linear-gradient(180deg, rgb(236 0 42) 0%, rgb(39, 38, 38) 100%);
   border-radius: 8px;
   text-align: center;
   text-transform: uppercase;
@@ -186,16 +188,6 @@ h3 {
   /*box-shadow: 0 0 15px rgba(104, 104, 104, 0.774), 0 0 10px rgba(74, 74, 74, 0.162); /* Efecto de sombra brillante */
   position: relative;
   overflow: hidden;
-  animation: blink 2s infinite;
-}
-
-@keyframes blink {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(66, 0, 0, 0.774), 0 0 25px rgba(148, 139, 139, 0.162);
-  }
-  50% {
-    box-shadow: 0 0 25px rgba(82, 2, 2, 0.9), 0 0 35px rgba(165, 1, 1, 0.5);
-  }
 }
 
 /* Estilo para la barra de desplazamiento en navegadores WebKit (Chrome, Safari, Edge) */
