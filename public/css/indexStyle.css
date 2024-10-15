@@ -171,6 +171,8 @@ body {
 #catalogoJuegos {
   margin-top: 130px;
   margin-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 /* Category Titles */
