@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #2c2c2c;
+  background-color: rgb(16, 16, 16);
   min-height: 100vh;
 }
 
@@ -174,13 +174,12 @@ h3 {
   font-family: baskerville;
   width: bold;
   padding: 10px 50px; 
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(55,15,15,1) 46%, rgba(22,0,21,1) 100%);
+  background: rgb(2,2,2);
+  background: linear-gradient(90deg, rgba(2,2,2,1) 0%, rgba(78,21,21,1) 50%, rgba(0,0,0,1) 100%);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 2px; /* Espaciado entre letras */
   box-shadow: 0 0 15px rgba(66, 0, 0, 0.774), 0 0 25px rgba(148, 139, 139, 0.162); /* Efecto de sombra brillante */
-  letter-spacing: 2px; /* Espaciado entre letras */
   position: relative;
   overflow: hidden;
 }
