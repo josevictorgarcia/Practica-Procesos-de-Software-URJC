@@ -27,8 +27,8 @@ body {
 }
 
 #logoContainer{
+  margin-left: 4%;
   height: 100px;
-  max-width: 300px;
   border-radius: 7px;
   overflow: hidden;
 }
@@ -57,6 +57,7 @@ body {
   justify-content: right;
   padding: 10px;
   position: relative;
+  margin-right: 4%;
 }
 
 .userProfile img {
@@ -224,6 +225,12 @@ h3 {
 
 /* Media Queries for Better Responsiveness */
 
+@media (max-width: 1200px) {
+  .pageTop{
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .buttonNavBar {
     width: auto;
@@ -235,6 +242,8 @@ h3 {
     max-height: 150px;
   }
 }
+
+
 /*Para que se quede abajo del todo*/
 .footer{
   bottom: 0;

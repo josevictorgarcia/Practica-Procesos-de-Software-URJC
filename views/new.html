@@ -91,36 +91,39 @@
         <div class="container-fluid">
             <form class="row" action="/post/edit" method="post" id="tuFormulario">
                 <input type="hidden" name="id" value="{{FormData.id}}">
-                <div class="col-md-12">
+                <div class="formField col-md-12">
                     <label for="InputNombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="InputNombre"
                         placeholder="Ejemplo: Poker" name='nombre' required>
                     <div id="nombre" class="invalid-feedback"></div>    
                 </div>
-                <div class="col-md-12">
+                <div class="formField col-md-12">
                     <label for="InputImagen" class="form-label">Dirección de la
                         imagen</label>
                     <input type="text" class="form-control" id="InputImagen" name='imagen' required>
                     <div id="imagen" class="invalid-feedback"></div>  
                 </div>
-                <div class="col-md-12">
+                <div class="formField col-md-12">
                     <label for="InputUrl" class="form-label">Dirección de la página web</label>
                     <input type="text" class="form-control" id="InputUrl" name='url' required>
                     <div id="url" class="invalid-feedback"></div>  
                 </div>
-                <div class="col-md-4">
-                    <label for="inputStateTipo" class="form-label">Tipo</label>
-                    <select id="inputStateTipo" class="form-select" name='tipo' required>
-                        <option value="" selected disabled>Selecciona Una</option>
-                        <option>Juegos de cartas</option>
-                        <option>Juegos de mesa</option>
-                        <option>Máquinas tragaperras</option>
-                    </select>
+                <div class="formTipoButton">
+                  <div class="formField col-md-4">
+                      <label for="inputStateTipo" class="form-label">Tipo</label>
+                      <select id="inputStateTipo" class="form-select" name='tipo' required>
+                          <option value="" selected disabled>Selecciona Una</option>
+                          <option>Juegos de cartas</option>
+                          <option>Juegos de mesa</option>
+                          <option>Máquinas tragaperras</option>
+                      </select>
+                  </div>
+                  <div class="formField">
+                    <button type="submit" class="btn btn-success" style="margin-left: 17px">Guardar</button>
+                    <button type="botom" style="margin-left: 17px" class="btn btn-danger"><a href="/">Cancelar</a></button>
+                  </div>
                 </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-success" style="margin-top: 30px">Guardar</button>
-                    <button type="botom" style="margin-top: 30px; margin-left: 17px" class="btn btn-danger"><a href="/">Cancelar</a></button>
-                </div>
+              
             </form>
         </div>
     </div>
