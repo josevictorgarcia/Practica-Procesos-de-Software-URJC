@@ -178,10 +178,20 @@ h3 {
   background: linear-gradient(90deg, rgba(2,2,2,1) 0%, rgba(78,21,21,1) 50%, rgba(0,0,0,1) 100%);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 2px; /* Espaciado entre letras */
+  letter-spacing: 2px;
   box-shadow: 0 0 15px rgba(66, 0, 0, 0.774), 0 0 25px rgba(148, 139, 139, 0.162); /* Efecto de sombra brillante */
   position: relative;
   overflow: hidden;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(66, 0, 0, 0.774), 0 0 25px rgba(148, 139, 139, 0.162);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(82, 2, 2, 0.9), 0 0 35px rgba(165, 1, 1, 0.5);
+  }
 }
 
 /* Estilo para la barra de desplazamiento en navegadores WebKit (Chrome, Safari, Edge) */
