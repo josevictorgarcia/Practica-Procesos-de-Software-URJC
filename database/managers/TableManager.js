@@ -50,7 +50,7 @@ class TableManager {
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 titulo TEXT NOT NULL,
                 descripcion TEXT,
-                genero TEXT
+                tipo TEXT
             );
         `;
 
