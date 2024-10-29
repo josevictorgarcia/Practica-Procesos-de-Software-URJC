@@ -48,9 +48,10 @@ class TableManager {
         const createJuegosTable = `
             CREATE TABLE IF NOT EXISTS juegos (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                titulo TEXT NOT NULL,
-                descripcion TEXT,
-                tipo TEXT
+                nombre TEXT NOT NULL,
+                imagen TEXT NOT NULL,
+                url TEXT NOT NULL,
+                tipo TEXT NOT NULL
             );
         `;
 

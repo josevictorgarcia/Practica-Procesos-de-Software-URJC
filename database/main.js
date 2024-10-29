@@ -4,18 +4,20 @@
  * Archivo principal de la aplicación.
  * 
  * Este archivo inicializa la conexión a la base de datos SQLite y utiliza las clases 
- * `TableManager` y `UserManager` para realizar operaciones en la base de datos. 
+ * `TableManager`, `UserManager` y `GameManager` para realizar operaciones en la base de datos. 
  * Se utiliza una estructura modular, donde `TableManager` maneja la creación y 
- * verificación de tablas y `UserManager` gestiona las operaciones de usuarios, 
- * incluyendo la adición de usuarios nuevos con contraseñas encriptadas.
+ * verificación de tablas, `UserManager` gestiona las operaciones de usuarios, 
+ * y `GameManager` gestiona los juegos.
  * 
  * Dependencias:
  * - DatabaseConnection: Clase que establece y gestiona la conexión a la base de datos SQLite.
  * - TableManager: Clase responsable de la inicialización y gestión de tablas.
  * - UserManager: Clase que gestiona las operaciones de usuarios.
+ * - GameManager: Clase que gestiona las operaciones relacionadas con los juegos.
  */
 
 import DatabaseConnection from './config/DatabaseConnection.js';
+import GameManager from './managers/GameManager.js'; // Importación del GameManager
 import TableManager from './managers/TableManager.js';
 import UserManager from './managers/UserManager.js';
 
@@ -27,13 +29,14 @@ import UserManager from './managers/UserManager.js';
      * 2. Se inicializa `TableManager` para gestionar la verificación y creación de tablas necesarias.
      * 3. Se ejecuta `listTables()` en `TableManager` para listar todas las tablas actuales en la base de datos.
      * 4. Se inicializa `UserManager` para gestionar los usuarios y se agrega un usuario de ejemplo.
-     * 5. Finalmente, se cierra la conexión a la base de datos.
+     * 5. Se inicializa `GameManager` para gestionar los juegos y cargar los juegos iniciales.
+     * 6. Finalmente, se cierra la conexión a la base de datos.
      */
     const dbConnection = new DatabaseConnection();
 
     // Inicializa el gestor de tablas para verificar y crear las tablas necesarias
     const tableManager = new TableManager(dbConnection);
-    tableManager.initializeTables();  // Crea tablas si no existen
+    await tableManager.initializeTables();  // Crea tablas si no existen
     await tableManager.listTables();  // Lista las tablas en la base de datos
 
     // EJEMPLO - Inicializa el gestor de usuarios y agrega un usuario de ejemplo
@@ -42,6 +45,10 @@ import UserManager from './managers/UserManager.js';
     const email = "juan.perez@example.com";
     const contraseña = "664545139";
     await userManager.addUser(nombre, email, contraseña);
+
+    // EJEMPLO - Inicializa el gestor de juegos y carga los juegos iniciales
+    const gameManager = new GameManager(dbConnection);
+    await gameManager.initializeGames(); // Carga los juegos iniciales si la tabla está vacía
 
     // Cierra la conexión a la base de datos
     dbConnection.close();
