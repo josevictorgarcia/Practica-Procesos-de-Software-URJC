@@ -30,17 +30,18 @@ class GameManager {
     }
 
     /**
-     * Agrega un nuevo juego a la base de datos.
+     * Agrega un nuevo juego a la base de datos utilizando una consulta SQL construida manualmente.
      *
      * @param {string} nombre - El título del juego.
      * @param {string} imagen - La URL de la imagen del juego.
-     * @param {string} url - El enlace al juego.
+     * @param {string} url - La URL del juego.
      * @param {string} tipo - El género del juego.
      * 
      * @returns {Promise<void>} Una promesa que se resuelve cuando el juego se ha insertado correctamente.
      */
     async addGame(nombre, imagen, url, tipo) {
         try {
+            // Usar runQuery que ya debería manejar la parametrización de consultas
             await this.dbConnection.runQuery(
                 "INSERT INTO juegos (nombre, imagen, url, tipo) VALUES (?, ?, ?, ?)",
                 [nombre, imagen, url, tipo]

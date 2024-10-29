@@ -28,14 +28,14 @@ class TableManager {
      *
      * Ejecuta consultas SQL para crear las tablas `usuarios` y `juegos` con las siguientes columnas:
      * - `usuarios`: Contiene `id`, `nombre`, `email`, y `password`, con una restricción `UNIQUE` en `email`.
-     * - `juegos`: Contiene `id`, `titulo`, `descripcion`, y `genero`.
+     * - `juegos`: Contiene `id`, `nombre`, `imagen`, `url`, y `tipo`.
      *
      * Las consultas se ejecutan de forma asíncrona, y el método imprime un mensaje de éxito o error
      * en la consola dependiendo del resultado de cada consulta.
      *
-     * @returns {void}
+     * @returns {Promise<void>} Una promesa que se resuelve cuando las tablas han sido verificadas o creadas.
      */
-    initializeTables() {
+    async initializeTables() {
         const createUsuariosTable = `
             CREATE TABLE IF NOT EXISTS usuarios (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -55,17 +55,19 @@ class TableManager {
             );
         `;
 
-        this.dbConnection.runQuery(createUsuariosTable).then(() => {
+        try {
+            await this.dbConnection.runQuery(createUsuariosTable);
             console.log("Tabla 'usuarios' verificada o creada correctamente.");
-        }).catch(err => {
+        } catch (err) {
             console.error("Error al crear la tabla 'usuarios':", err.message);
-        });
+        }
 
-        this.dbConnection.runQuery(createJuegosTable).then(() => {
+        try {
+            await this.dbConnection.runQuery(createJuegosTable);
             console.log("Tabla 'juegos' verificada o creada correctamente.");
-        }).catch(err => {
+        } catch (err) {
             console.error("Error al crear la tabla 'juegos':", err.message);
-        });
+        }
     }
 
     /**
