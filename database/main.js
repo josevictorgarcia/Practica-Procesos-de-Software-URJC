@@ -35,11 +35,14 @@ class Database {
      * @throws {Error} Si la variable de entorno `DB_FILE` no está definida.
      */
     constructor() {
-        if (!"./database/database.db") {
+        // Verifica si la variable de entorno DB_FILE está definida
+        const dbFilePath = process.env.DB_FILE;
+        if (!dbFilePath) {
             throw new Error("La variable DB_FILE no está definida en el archivo .env");
         }
 
-        this.db = new sqlite3.Database("./database/database.db", (err) => {
+        // Inicializa la conexión a la base de datos SQLite
+        this.db = new sqlite3.Database(dbFilePath, (err) => {
             if (err) {
                 console.error("Error al conectar a la base de datos:", err.message);
             } else {
@@ -138,8 +141,17 @@ class Database {
      */
     async addUser(nombre, email, contraseña) {
         try {
+            // Verifica si el correo electrónico ya existe
+            const existingUser = await this.runQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
+            if (existingUser.length > 0) {
+                console.log("Error: El correo electrónico ya está en uso.");
+                return; // Salimos del método si el usuario ya existe
+            }
+            
+            // Encripta la contraseña antes de almacenarla
             const hashedPassword = await bcrypt.hash(contraseña, 10);
             
+            // Inserta el nuevo usuario
             await this.runQuery(
                 "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)",
                 [nombre, email, hashedPassword]
@@ -149,6 +161,40 @@ class Database {
             console.error("Error al crear el usuario:", err.message);
         }
     }
+
+    /**
+     * Método para listar las tablas en la base de datos.
+     *
+     * Este método ejecuta una consulta SQL que selecciona los nombres de todas 
+     * las tablas en la base de datos SQLite. Luego, imprime cada nombre de 
+     * tabla en la consola. 
+     *
+     * No recibe argumentos.
+     *
+     * **Funcionalidad Interna**: Utiliza el método `runQuery` para ejecutar 
+     * la consulta SQL `SELECT name FROM sqlite_master WHERE type='table'`, 
+     * que es una consulta estándar en SQLite para obtener la lista de tablas.
+     * Si la consulta se ejecuta con éxito, los nombres de las tablas son 
+     * mostrados en la consola. 
+     *
+     * **Retorno**: Este método no devuelve ningún valor, solo imprime los 
+     * nombres de las tablas en la consola.
+     * @returns {void}
+     *
+     * **Errores**: Maneja errores que pueden ocurrir durante la ejecución 
+     * de la consulta, imprimiendo un mensaje de error con el detalle del mismo.
+     * @throws {Error} Si ocurre un error al cerrar la base de datos.
+     */
+    async listTables() {
+        try {
+            const rows = await this.runQuery("SELECT name FROM sqlite_master WHERE type='table'");
+            console.log("Tablas en la base de datos:");
+            rows.forEach(row => console.log(row.name));
+        } catch (err) {
+            console.error("Error al listar las tablas:", err.message);
+        }
+    }
+
 
     /**
      * Cierra la conexión a la base de datos.
