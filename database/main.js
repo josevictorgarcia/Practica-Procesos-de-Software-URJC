@@ -36,7 +36,7 @@ import UserManager from './managers/UserManager.js';
     tableManager.initializeTables();  // Crea tablas si no existen
     await tableManager.listTables();  // Lista las tablas en la base de datos
 
-    // Inicializa el gestor de usuarios y agrega un usuario de ejemplo
+    // EJEMPLO - Inicializa el gestor de usuarios y agrega un usuario de ejemplo
     const userManager = new UserManager(dbConnection);
     const nombre = "Juan Pérez";
     const email = "juan.perez@example.com";
