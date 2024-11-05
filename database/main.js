@@ -17,7 +17,6 @@
  */
 
 import DatabaseConnection from './config/DatabaseConnection.js';
-import GameManager from './managers/GameManager.js';
 import TableManager from './managers/TableManager.js';
 
 (async () => {
@@ -38,19 +37,9 @@ import TableManager from './managers/TableManager.js';
     await tableManager.initializeTables();  // Crea tablas si no existen
     await tableManager.listTables();
 
-    // EJEMPLO - Inicializa el gestor de usuarios y agrega un usuario de ejemplo
-    // const userManager = new UserManager(dbConnection);
-    // const nombre = "Juan Pérez";
-    // const email = "juan.perez@example.com";
-    // const contraseña = "664545139";
-    // await userManager.addUser(nombre, email, contraseña);
-
     // EJEMPLO - Inicializa el gestor de juegos y carga los juegos iniciales
-    const gameManager = new GameManager(dbConnection);
-    // await gameManager.initializeGames(); // Carga los juegos iniciales si la tabla está vacía
-
-    const allGames = await gameManager.getGamesByType('cartas');
-    console.log("Todos los juegos:", allGames);
+    // const gameManager = new GameManager(dbConnection);
+    // await gameManager.initializeGames(); // Carga los juegos iniciales EJECUTAR UNA VEZ AL CREAR TABLA
 
     // Cierra la conexión a la base de datos
     dbConnection.close();
