@@ -1,3 +1,8 @@
+
+const user = null;
+/*
+const user = {nombre: "Username", foto: "https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2016/09/569465-whatsapp-que-tus-contactos-ponen-rana-perfil.jpg?tf=3840x"}
+*/
 const posts = new Map([
     [1, new Map()], /*Juegos de cartas */
     [2, new Map()], /*Juegos de mesa */
@@ -14,6 +19,15 @@ addPost({nombre: "Juego Shooter", imagen: "https://images.crazygames.com/games/k
 addPost({nombre: "Juego Shooter", imagen: "https://images.crazygames.com/games/krunker-io/cover-1591336739727.png?auto=format,compress&q=75&cs=strip", url: "https://krunker.io", tipo: "Juegos de acción"});
 addPost({nombre: "Juego Shooter", imagen: "https://images.crazygames.com/games/krunker-io/cover-1591336739727.png?auto=format,compress&q=75&cs=strip", url: "https://krunker.io", tipo: "Juegos de acción"});
 addPost({nombre: "Juego Shooter", imagen: "https://images.crazygames.com/games/krunker-io/cover-1591336739727.png?auto=format,compress&q=75&cs=strip", url: "https://krunker.io", tipo: "Juegos de acción"});
+
+export function isLogedIn(){
+    if(!user){return (false, null)}
+    return (true, user)
+}
+
+export function getUserData(){
+    return user;
+}
 
 export function addPost(post) {
     ///En este apartado se comprueba que el post a crear existe o no, si no existe se le añade con el nuevo id. Pero, si existe se modifica dato a dato el post y se repostea con los nuevos datos///
