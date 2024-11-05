@@ -7,7 +7,6 @@ router.get('/', async (req, res) => { // Cambia a función asíncrona
     try {
         // Usa await para obtener los datos
         const cartas = await boardService.getCartas(); // Espera a que se resuelva la promesa
-        console.log(cartas)
         const mesa = await boardService.getMesa(); // Espera a que se resuelva la promesa
         const accion = await boardService.getAccion(); // Espera a que se resuelva la promesa
         const user = boardService.isLogedIn();
@@ -27,15 +26,17 @@ router.get('/', async (req, res) => { // Cambia a función asíncrona
     }
 })
 
-router.post("/login", (req, res) => {
+router.get("/login", (req, res) => {
     // Implementa la lógica de inicio de sesión
+    res.render('log_sign', {});
 })
 
-router.post("/signup", (req, res) => {
+router.get("/signup", (req, res) => {
     // Implementa la lógica de registro
+    res.render('log_sign', {});
 })
 
-router.get('/newItem', (req, res) => {
+router.get('/newGame', (req, res) => {
     res.render('new', {});
 })
 
