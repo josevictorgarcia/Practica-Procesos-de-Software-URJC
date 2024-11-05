@@ -3,42 +3,43 @@ import * as boardService from './boardService.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    
-    const cartas = boardService.getCartas();
-    const mesa = boardService.getMesa();
-    const accion = boardService.getAccion();
-    const user = boardService.isLogedIn();
-    let nombre;
-    let foto;
-    if(user){
-        const userData = boardService.getUserData();
-        nombre = userData.nombre;
-        foto = userData.foto;
+router.get('/', async (req, res) => { // Cambia a función asíncrona
+    try {
+        // Usa await para obtener los datos
+        const cartas = await boardService.getCartas(); // Espera a que se resuelva la promesa
+        console.log(cartas)
+        const mesa = await boardService.getMesa(); // Espera a que se resuelva la promesa
+        const accion = await boardService.getAccion(); // Espera a que se resuelva la promesa
+        const user = boardService.isLogedIn();
+        let nombre;
+        let foto;
+        if(user){
+            const userData = boardService.getUserData();
+            nombre = userData.nombre;
+            foto = userData.foto;
+        }
+
+        // Renderiza la vista pasando los datos
+        res.render('index', {user,nombre,foto,cartas, mesa, accion});
+    } catch (error) {
+        console.error("Error al obtener los juegos:", error);
+        res.status(500).send("Error al obtener los juegos");
     }
-
-    res.render('index', {user,nombre,foto,cartas, mesa, accion});
-
 })
 
-router.post("login", (req, res) => {
-
+router.post("/login", (req, res) => {
+    // Implementa la lógica de inicio de sesión
 })
 
-router.post("singup", (req, res) => {
-
+router.post("/signup", (req, res) => {
+    // Implementa la lógica de registro
 })
 
 router.get('/newItem', (req, res) => {
-    
-    res.render('new', {
-
-    })
-
+    res.render('new', {});
 })
 
-
-router.get('/profile', (req, res) => { //Pestaña de perfil (problablemente temporal)
+router.get('/profile', (req, res) => { 
     res.render('profile');
 });
 
@@ -49,6 +50,5 @@ router.post('/post/edit', (req, res) => {
     boardService.addPost({ nombre, imagen, url, tipo }, req.body.id);
     res.redirect('/');//nos redirige a la pagina index
 });
-
 
 export default router;

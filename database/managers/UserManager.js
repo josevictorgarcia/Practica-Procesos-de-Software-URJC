@@ -1,61 +1,60 @@
 import bcrypt from 'bcrypt';
+import { executeNonQuery, executeQuery } from '../config/DatabaseConector.js';
 
 /**
+ * 
  * Clase UserManager
  * 
- * La clase `UserManager` gestiona la creación y manejo de usuarios en la base de datos,
+ * La clase `UserManager` gestiona la creación y manejo de usuarios en la base de datos SQLite3,
  * proporcionando funciones como la adición de nuevos usuarios con verificación y encriptación de contraseña.
  * 
  * Métodos:
- * - `constructor(dbConnection)`: Inicializa el gestor de usuarios con una conexión de base de datos.
- * - `addUser(nombre, email, contraseña)`: Agrega un usuario nuevo a la base de datos, encriptando la contraseña.
+ * - `constructor()`: Inicializa el gestor de usuarios.
+ * - `addUser(nombre, email, contraseña, profileSrc)`: Agrega un usuario nuevo a la base de datos, encriptando la contraseña.
  * - `verifyUser(email, contraseña)`: Verifica si un usuario existe y si la contraseña proporcionada es válida.
  * - `getUserInfo(email)`: Devuelve la información de un usuario si el correo existe.
  */
+
 class UserManager {
     /**
      * Constructor de la clase UserManager.
-     * 
-     * Recibe una instancia de conexión de base de datos y la utiliza para ejecutar consultas
-     * relacionadas con la administración de usuarios.
-     *
-     * @param {DatabaseConnection} dbConnection - Instancia de conexión a la base de datos.
      */
-    constructor(dbConnection) {
-        this.dbConnection = dbConnection;
+    constructor() {
+        // No necesita una conexión a la base de datos, ya que utiliza las funciones exportadas
     }
 
     /**
-     * Agrega un usuario nuevo a la base de datos.
+     * Agrega un usuario nuevo a la base de datos SQLite3.
      *
      * Este método verifica si el correo electrónico ya está en uso en la base de datos.
      * Si no está en uso, encripta la contraseña con `bcrypt` y luego inserta el usuario 
-     * en la tabla `usuarios` con el nombre, email, y contraseña encriptada.
+     * en la tabla `usuarios` con el nombre, email, contraseña encriptada y perfil.
      *
      * @param {string} nombre - El nombre del usuario.
      * @param {string} email - El correo electrónico del usuario.
      * @param {string} contraseña - La contraseña en texto plano del usuario.
+     * @param {string} profileSrc - La URL de la imagen de perfil del usuario.
      * 
      * @returns {Promise<string>} Una promesa que se resuelve cuando el usuario se ha insertado correctamente.
      * 
      * @throws {Error} Si ocurre un error durante la encriptación de la contraseña o la inserción en la base de datos.
      */
-    async addUser(nombre, email, contraseña, profile_src) {
+    async addUser(nombre, email, contraseña, profileSrc) {
         try {
-            const existingUser = await this.dbConnection.runQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
+            const existingUser = await executeQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
             if (existingUser.length > 0) {
-                throw new Error("El correo electrónico ya está en uso."); // Cambiado a un raise
+                throw new Error("El correo electrónico ya está en uso.");
             }
-            
+
             const hashedPassword = await bcrypt.hash(contraseña, 10);
-            await this.dbConnection.runQuery(
+            await executeNonQuery(
                 "INSERT INTO usuarios (nombre, email, password, profile_src) VALUES (?, ?, ?, ?)",
-                [nombre, email, hashedPassword, profile_src]
+                [nombre, email, hashedPassword, profileSrc]
             );
-            return 'Registro de usuario exitoso'
+            return 'Registro de usuario exitoso';
         } catch (err) {
             console.error("Error al crear el usuario:", err.message);
-            throw new Error("Error al crear el usuario: " + err.message); // También puedes optar por propagar el error
+            throw new Error("Error al crear el usuario: " + err.message);
         }
     }
 
@@ -76,7 +75,7 @@ class UserManager {
     async verifyUser(email, contraseña) {
         try {
             // Verifica si el correo electrónico existe en la base de datos
-            const user = await this.dbConnection.runQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
+            const user = await executeQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
                 throw new Error("Credenciales inválidas");
             }
@@ -97,7 +96,7 @@ class UserManager {
     /**
      * Obtiene la información de un usuario por su correo electrónico.
      *
-     * Este método consulta la base de datos para obtener la información de un usuario
+     * Este método consulta la base de datos SQLite3 para obtener la información de un usuario
      * dado su correo electrónico. Si el usuario no existe, lanza un error de "Usuario no encontrado".
      *
      * @param {string} email - El correo electrónico del usuario.
@@ -109,7 +108,7 @@ class UserManager {
      */
     async getUserInfo(email) {
         try {
-            const user = await this.dbConnection.runQuery("SELECT id, nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
+            const user = await executeQuery("SELECT id, nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
                 throw new Error("Usuario no encontrado");
             }
@@ -122,5 +121,5 @@ class UserManager {
         }
     }
 }
-
 export default UserManager;
+
