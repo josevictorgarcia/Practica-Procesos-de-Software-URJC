@@ -36,26 +36,26 @@ class UserManager {
      * @param {string} email - El correo electrónico del usuario.
      * @param {string} contraseña - La contraseña en texto plano del usuario.
      * 
-     * @returns {Promise<void>} Una promesa que se resuelve cuando el usuario se ha insertado correctamente.
+     * @returns {Promise<string>} Una promesa que se resuelve cuando el usuario se ha insertado correctamente.
      * 
      * @throws {Error} Si ocurre un error durante la encriptación de la contraseña o la inserción en la base de datos.
      */
-    async addUser(nombre, email, contraseña) {
+    async addUser(nombre, email, contraseña, profile_src) {
         try {
             const existingUser = await this.dbConnection.runQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
             if (existingUser.length > 0) {
-                console.log("Error: El correo electrónico ya está en uso.");
-                return; 
+                throw new Error("El correo electrónico ya está en uso."); // Cambiado a un raise
             }
             
             const hashedPassword = await bcrypt.hash(contraseña, 10);
             await this.dbConnection.runQuery(
-                "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)",
-                [nombre, email, hashedPassword]
+                "INSERT INTO usuarios (nombre, email, password, profile_src) VALUES (?, ?, ?, ?)",
+                [nombre, email, hashedPassword, profile_src]
             );
-            console.log("Usuario agregado correctamente.");
+            return 'Registro de usuario exitoso'
         } catch (err) {
             console.error("Error al crear el usuario:", err.message);
+            throw new Error("Error al crear el usuario: " + err.message); // También puedes optar por propagar el error
         }
     }
 
@@ -109,7 +109,7 @@ class UserManager {
      */
     async getUserInfo(email) {
         try {
-            const user = await this.dbConnection.runQuery("SELECT id, nombre, email FROM usuarios WHERE email = ?", [email]);
+            const user = await this.dbConnection.runQuery("SELECT id, nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
                 throw new Error("Usuario no encontrado");
             }
