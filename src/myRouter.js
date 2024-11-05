@@ -45,15 +45,41 @@ router.post('/newGame', express.json(), async (req, res) => {
         // Desestructurar los parámetros del JSON recibido
         const { nombre, imagen, url, tipo } = req.body;
 
-        // Asegúrate de que la función addGame sea asíncrona si interactúa con la base de datos
-        await boardService.addGame(nombre, imagen, url, tipo);
-        res.status(200).send("Agregado correctamente");
+        // Validaciones de los campos
+        // Validar nombre: debe ser texto y no mayor a 50 caracteres
+        if (typeof nombre !== 'string' || nombre.length > 50) {
+            return res.status(400).send('El nombre debe ser un texto y no mayor a 50 caracteres.');
+        }
+
+        // Validar que imagen sea una URL que termine en ".png"
+        const urlRegex = /^(https?:\/\/[^\s]+)$/;
+        if (!urlRegex.test(imagen) || !imagen.endsWith('.png')) {
+            return res.status(400).send('La imagen debe ser una URL válida que termine en ".png".');
+        }
+
+        // Validar que url sea una URL válida
+        if (!urlRegex.test(url)) {
+            return res.status(400).send('La URL de la página web debe ser una URL válida.');
+        }
+
+        // Validar que tipo sea uno de los valores permitidos y ajustar el valor de "acción" si corresponde
+        const allowedTypes = ['cartas', 'mesa', 'accion'];
+        let tipoNormalizado = tipo.replace('Juegos de ', '').toLowerCase();
+        if (tipoNormalizado === 'acción') {
+            tipoNormalizado = 'accion';
+        }
+        if (!allowedTypes.includes(tipoNormalizado)) {
+            return res.status(400).send('El tipo debe ser uno de los siguientes: cartas, mesa, o accion.');
+        }
+
+        // Llamar a la función addGame con el tipo normalizado
+        await boardService.addGame(nombre, imagen, url, tipoNormalizado);
+        res.status(200).send('Agregado correctamente');
     } catch (error) {
         console.error(error);  // Es útil ver el error en consola para depuración
-        res.status(500).send("Error al agregar el juego: " + error.message);
+        res.status(500).send('Error al agregar el juego: ' + error.message);
     }
 });
-
 
 router.get('/profile', (req, res) => { 
     res.render('profile');
