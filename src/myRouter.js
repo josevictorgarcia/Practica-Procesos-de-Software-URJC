@@ -13,6 +13,14 @@ router.get('/', (req, res) => {
 
 })
 
+router.post("login", (req, res) => {
+
+})
+
+router.post("singup", (req, res) => {
+
+})
+
 router.get('/newItem', (req, res) => {
     
     res.render('new', {
