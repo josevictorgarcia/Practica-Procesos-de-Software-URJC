@@ -109,7 +109,7 @@ class UserManager {
      */
     async getUserInfo(email) {
         try {
-            const user = await this.dbConnection.runQuery("SELECT id, nombre, email FROM usuarios WHERE email = ?", [email]);
+            const user = await this.dbConnection.runQuery("SELECT id, nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
                 throw new Error("Usuario no encontrado");
             }
