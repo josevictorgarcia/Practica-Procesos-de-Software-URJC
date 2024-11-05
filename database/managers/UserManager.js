@@ -40,7 +40,7 @@ class UserManager {
      * 
      * @throws {Error} Si ocurre un error durante la encriptación de la contraseña o la inserción en la base de datos.
      */
-    async addUser(nombre, email, contraseña) {
+    async addUser(nombre, email, contraseña, profile_src) {
         try {
             const existingUser = await this.dbConnection.runQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
             if (existingUser.length > 0) {
@@ -49,8 +49,8 @@ class UserManager {
             
             const hashedPassword = await bcrypt.hash(contraseña, 10);
             await this.dbConnection.runQuery(
-                "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)",
-                [nombre, email, hashedPassword]
+                "INSERT INTO usuarios (nombre, email, password, profile_src) VALUES (?, ?, ?, ?)",
+                [nombre, email, hashedPassword, profile_src]
             );
             return 'Registro de usuario exitoso'
         } catch (err) {
