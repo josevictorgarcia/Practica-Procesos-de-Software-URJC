@@ -40,6 +40,21 @@ router.get('/newGame', (req, res) => {
     res.render('new', {});
 })
 
+router.post('/newGame', express.json(), async (req, res) => {
+    try {
+        // Desestructurar los parámetros del JSON recibido
+        const { nombre, imagen, url, tipo } = req.body;
+
+        // Asegúrate de que la función addGame sea asíncrona si interactúa con la base de datos
+        await boardService.addGame(nombre, imagen, url, tipo);
+        res.status(200).send("Agregado correctamente");
+    } catch (error) {
+        console.error(error);  // Es útil ver el error en consola para depuración
+        res.status(500).send("Error al agregar el juego: " + error.message);
+    }
+});
+
+
 router.get('/profile', (req, res) => { 
     res.render('profile');
 });

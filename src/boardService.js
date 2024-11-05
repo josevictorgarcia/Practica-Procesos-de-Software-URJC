@@ -65,9 +65,9 @@ export async function getAccion() {
     return await gameManager.getAllGames("accion");
 }
 
-export async function addGame(nombre, imagen, tipo) {
+export async function addGame(nombre, imagen, url, tipo) {
     const gameService = new GameManager();
-    return await gameService.addGame(nombre, imagen, tipo);
+    return await gameService.addGame(nombre, imagen, url, tipo);
 }
 
 
