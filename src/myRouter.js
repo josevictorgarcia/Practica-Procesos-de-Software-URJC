@@ -21,6 +21,11 @@ router.get('/newItem', (req, res) => {
 
 })
 
+
+router.get('/profile', (req, res) => { //Pestaña de perfil (problablemente temporal)
+    res.render('profile');
+});
+
 /*Añade un post y define sus componentes */
 router.post('/post/edit', (req, res) => {
     let { nombre, imagen, url, tipo } = req.body;

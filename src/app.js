@@ -5,6 +5,7 @@ import { __dirname } from './dirname.js';
 import myRouter from './myRouter.js';
 
 const app = express();
+const port = 3000;
 
 app.set('views', __dirname + '/../views');
 app.set('view engine', 'html');
@@ -16,4 +17,7 @@ app.use(express.static(__dirname + '/../public'));
 
 app.use('/', myRouter);
 
-app.listen(3000, () => console.log('Listening on port 3000!'));
+app.listen(port, () => {
+    console.log(`Listening on port ${port}!`);
+    console.log('App has restarted due to changes.');
+});
