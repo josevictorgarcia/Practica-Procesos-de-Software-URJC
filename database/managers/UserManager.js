@@ -74,22 +74,28 @@ class UserManager {
      */
     async verifyUser(email, contraseña) {
         try {
-            // Verifica si el correo electrónico existe en la base de datos
-            const user = await executeQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
+            // Verifica si el correo electrónico existe en la base de datos, incluyendo la contraseña
+            const user = await executeQuery("SELECT nombre, email, profile_src, password FROM usuarios WHERE email = ?", [email]);
+            
             if (user.length === 0) {
-                throw new Error("Credenciales inválidas");
+                return false; // No se encontró el usuario
             }
-
+    
             // Verifica la contraseña usando bcrypt
             const isPasswordValid = await bcrypt.compare(contraseña, user[0].password);
             if (!isPasswordValid) {
-                throw new Error("Credenciales inválidas");
+                return false; // Contraseña incorrecta
             }
-
-            return "Inicio de sesión exitoso";
+    
+            // Retorna solo la información del usuario sin la contraseña
+            return {
+                nombre: user[0].nombre,
+                email: user[0].email,
+                profile_src: user[0].profile_src
+            };
         } catch (err) {
             console.error("Error al verificar el usuario:", err.message);
-            throw new Error("Error: vuelvalo a intentar más tarde");
+            return false; // Retorna false en caso de error
         }
     }
 
@@ -108,7 +114,7 @@ class UserManager {
      */
     async getUserInfo(email) {
         try {
-            const user = await executeQuery("SELECT id, nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
+            const user = await executeQuery("SELECT nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
                 throw new Error("Usuario no encontrado");
             }
