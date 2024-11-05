@@ -8,8 +8,24 @@ router.get('/', (req, res) => {
     const cartas = boardService.getCartas();
     const mesa = boardService.getMesa();
     const accion = boardService.getAccion();
+    const user = boardService.isLogedIn();
+    let nombre;
+    let foto;
+    if(user){
+        const userData = boardService.getUserData();
+        nombre = userData.nombre;
+        foto = userData.foto;
+    }
 
-    res.render('index', {cartas, mesa, accion})
+    res.render('index', {user,nombre,foto,cartas, mesa, accion});
+
+})
+
+router.post("login", (req, res) => {
+
+})
+
+router.post("singup", (req, res) => {
 
 })
 

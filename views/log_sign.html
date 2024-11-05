@@ -6,13 +6,11 @@
     <title>Gamming Zone</title>
 
     <!-- Bootstrap CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom CSS -->
-    <link href="/css/indexStyle.css" rel="stylesheet" />
+    <link href="/css/newStyle.css" rel="stylesheet" />
 
     <!-- Google Fonts for modern typography -->
     <link
@@ -31,13 +29,11 @@
   <body id="main" class="background1">
     <!-- Header and Navigation Bar -->
     <header class="container-fluid text-center py-3 pageTop">
-
       <div id="logoContainer">
-        <!-- https://i.gifer.com/BVDZ.gif -->
         <img
           id="logoArcade"
           src="/img/arcade.jpeg"
-          alt="Arcade logo"
+          alt="Casino logo"
           class="mb-2"
         />
       </div>
@@ -47,25 +43,8 @@
         <a href="#" class="buttonNavBar">Sobre Nosotros</a>
         <a href="/newItem" class="buttonNavBar">Nuevo Juego</a>
       </nav>
-      {{#user}} <!-- LOGED IN -->
-      <div class="userProfile">
-        <!-- Foto de perfil -->
-        <img
-          src="{{foto}}"
-        />
-        <!-- Nombre del usuario -->
-        <span>{{nombre}}</span>
 
-        <ul class="submenu">
-          <li><a href="#">Perfil</a></li>
-          <li><a href="#">Configuración</a></li>
-          <li><a href="#">Cerrar sesión</a></li>
-        </ul>
-      </div>
-      {{/user}} 
-      
-      {{^user}} <!-- NOT LOGED IN -->
-<div class="userProfile">
+      <div class="userProfile">
         <!-- Foto de perfil -->
         <img
           src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhAIBwgPEBUS
@@ -95,116 +74,27 @@
             NyemZmfNq9UrmjTrlUf6z68PqyREoAoAAAAAAAAAAAAAAn6Ld5rUKY34Vb0+fR6xDTsbj1TRfprjqmn5tnKVY+AAAA//Z"
         />
         <!-- Nombre del usuario -->
-        <span>Usuario Invitado</span>
+        <span>Nombre Usuario</span>
 
         <ul class="submenu">
-          <li><a href="/login">Iniciar Sesion</a></li>
-          <li><a href="/signup">Registrarse</a></li>
+          <li><a href="#">Perfil</a></li>
+          <li><a href="#">Configuración</a></li>
+          <li><a href="#">Cerrar sesión</a></li>
         </ul>
       </div>
-      {{/user}}
     </header>
 
-    <!-- Games Catalog -->
-    <main id="catalogoJuegos" class="container">
-      <!-- Categoría: Juegos de Cartas -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Juegos de Cartas
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-
-        <div class="games-row">
-          {{#cartas}}
-          <div class="game-card">
-            <div class="card text-center shadow">
-              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="{{url}}"
-                  class="stretched-link"
-                  aria-label="Play Blackjack"
-                ></a>
-              </div>
-            </div>
-          </div>
-          <!-- Añade más juegos a esta categoría -->
-          {{/cartas}}
-        </div>
-      </section>
-
-      <!-- Categoría: Juegos de Mesa -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Juegos de Mesa
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-
-        <div class="games-row">
-          {{#mesa}}
-          <div class="game-card">
-            <div class="card text-center shadow">
-              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="{{url}}"
-                  class="stretched-link"
-                  aria-label="Play Ruleta"
-                ></a>
-              </div>
-            </div>
-          </div>
-          {{/mesa}}
-        </div>
-      </section>
-
-      <!-- Categoría: Máquinas Tragamonedas -->
-      <section class="mt-4">
-        <h3 class="text-center">
-          Juego de Acción
-          <button class="ver-todos btn btn-outline-light btn-sm">
-            Ver Todos
-          </button>
-        </h3>
-        <div class="games-row">
-          {{#accion}}
-          <div class="game-card">
-            <div class="card text-center shadow">
-              <img class="card-img-top" src="{{imagen}}" alt="{{nombre}}" />
-              <div class="card-body">
-                <h4>{{nombre}}</h4>
-                <a
-                  href="{{url}}"
-                  class="stretched-link"
-                  aria-label="Play Slot Machine"
-                ></a>
-              </div>
-            </div>
-          </div>
-          {{/accion}}
-        </div>
-      </section>
-
-      <!-- Añadir más secciones de juegos si es necesario -->
-    </main>
+    
 
     <!-- Footer -->
     <footer class="footer text-light text-center py-3">
-      <div class="footerWords">
-        © 2024 Gamming Zone. Todos los derechos reservados.
-      </div>
+      <div class="footerWords">© 2024 Gamming Zone. Todos los derechos reservados.</div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Script JS -->
-    <script src="js/script.js"></script>
+
   </body>
 </html>
