@@ -65,6 +65,12 @@ export async function getAccion() {
     return await gameManager.getAllGames("accion");
 }
 
+export async function addGame(nombre, imagen, tipo) {
+    const gameService = new GameManager();
+    return await gameService.addGame(nombre, imagen, tipo);
+}
+
+
 /**
  * Agrega un nuevo usuario a la base de datos.
  * @param {string} nombre - El nombre del usuario.
