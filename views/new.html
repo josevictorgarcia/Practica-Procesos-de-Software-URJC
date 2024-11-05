@@ -12,18 +12,15 @@
     <!-- Custom CSS -->
     <link href="/css/newStyle.css" rel="stylesheet" />
 
+    <!-- Script JS -->
+    <script src="js/new.js"></script>
+    <script src="js/script.js"></script>
+
     <!-- Google Fonts for modern typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif" type="image/x-icon" />
   </head>
 
   <body id="main" class="background1">
@@ -31,56 +28,49 @@
     {{> partials/navbar }}
 
     <main class="Formulario">
-        <div class="titulo">
-            <h3 style="margin-bottom: 15px">Introduce un nuevo juego</h3>
-        </div>
-        <div class="container-fluid">
-            <form class="row" action="/post/edit" method="post" id="tuFormulario">
-                <input type="hidden" name="id" value="{{FormData.id}}">
-                <div class="formField col-md-12">
-                    <label for="InputNombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="InputNombre"
-                        placeholder="Ejemplo: Poker" name='nombre' required>
-                    <div id="nombre" class="invalid-feedback"></div>    
-                </div>
-                <div class="formField col-md-12">
-                    <label for="InputImagen" class="form-label">Dirección de la
-                        imagen</label>
-                    <input type="text" class="form-control" id="InputImagen" name='imagen' required>
-                    <div id="imagen" class="invalid-feedback"></div>  
-                </div>
-                <div class="formField col-md-12">
-                    <label for="InputUrl" class="form-label">Dirección de la página web</label>
-                    <input type="text" class="form-control" id="InputUrl" name='url' required>
-                    <div id="url" class="invalid-feedback"></div>  
-                </div>
-                <div class="formTipoButton">
-                  <div class="formField col-md-4">
-                      <label for="inputStateTipo" class="form-label">Tipo</label>
-                      <select id="inputStateTipo" class="form-select" name='tipo' required>
-                          <option value="" selected disabled>Selecciona Una</option>
-                          <option>Juegos de cartas</option>
-                          <option>Juegos de mesa</option>
-                          <option>Juegos de acción</option>
-                      </select>
-                  </div>
-                  <div class="formField">
-                    <button type="submit" class="btn btn-success" style="margin-left: 17px">Guardar</button>
-                    <button type="botom" style="margin-left: 17px" class="btn btn-danger"><a href="/">Cancelar</a></button>
-                  </div>
-                </div>
-              
-            </form>
-        </div>
-      </main>
+      <div class="titulo">
+        <h3 style="margin-bottom: 15px">Introduce un nuevo juego</h3>
+      </div>
+      <div class="container-fluid">
+        <form class="row" id="form-new-game">
+          <div class="formField col-md-12">
+            <label for="InputNombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="InputNombre" placeholder="Ejemplo: Poker" name="nombre" required>
+            <div id="nombre" class="invalid-feedback"></div>
+          </div>
+          <div class="formField col-md-12">
+            <label for="InputImagen" class="form-label">Dirección de la imagen</label>
+            <input type="text" class="form-control" id="InputImagen" name="imagen" required>
+            <div id="imagen" class="invalid-feedback"></div>
+          </div>
+          <div class="formField col-md-12">
+            <label for="InputUrl" class="form-label">Dirección de la página web</label>
+            <input type="text" class="form-control" id="InputUrl" name="url" required>
+            <div id="url" class="invalid-feedback"></div>
+          </div>
+          <div class="formTipoButton">
+            <div class="formField col-md-4">
+              <label for="inputStateTipo" class="form-label">Tipo</label>
+              <select id="inputStateTipo" class="form-select" name="tipo" required>
+                <option value="" selected disabled>Selecciona Una</option>
+                <option>Juegos de cartas</option>
+                <option>Juegos de mesa</option>
+                <option>Juegos de acción</option>
+              </select>
+            </div>
+            <div class="formField">
+              <button type="button" class="btn btn-success" style="margin-left: 17px" onclick="enviarFormulario()">Guardar</button>
+              <button type="button" style="margin-left: 17px" class="btn btn-danger"><a href="/">Cancelar</a></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
 
     <!-- Include Footer -->
     {{> partials/footer }}
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script JS -->
-    <script src="js/script.js"></script>
   </body>
 </html>
