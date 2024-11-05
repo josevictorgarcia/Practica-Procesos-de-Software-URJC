@@ -4,7 +4,12 @@ import sqlite3 from "sqlite3";
 dotenv.config();
 
 // Set the path to your SQLite3 database file
-const databasePath = "/Users/jordiguix/Documents/UNIVERSIDAD/MADRID/MATRICULADO - URJC/24-25 2o Año/1er Semestre/Proceso Software/PRACTICAS/PRACTICA 1 - GITHUB/Practica-Procesos-de-Software-URJC/database/database.db";
+const databasePath = process.env.DATABASE_PATH;
+
+if (!databasePath) {
+  console.error('La ruta de la base de datos no está definida en las variables de entorno.');
+  process.exit(1); // Salir con un error si no se ha encontrado la variable de entorno
+}
 
 // Create a new SQLite3 database connection
 const db = new sqlite3.Database(databasePath);
