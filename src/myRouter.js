@@ -26,15 +26,15 @@ router.get('/', async (req, res) => { // Cambia a función asíncrona
 
 // GET route for login
 router.get("/login", (req, res) => {
-    res.render('log_sign', {
-        form: "login" // Indica que se debe mostrar el formulario de inicio de sesión
+    res.render('login', {
+        form: "loginForm" // Indica que se debe mostrar el formulario de inicio de sesión
     });
 });
 
 // GET route for signup
 router.get("/signup", (req, res) => {
-    res.render('log_sign', {
-        form: "signup" // Indica que se debe mostrar el formulario de registro
+    res.render('signup', {
+        form: "signupForm" // Indica que se debe mostrar el formulario de registro
     });
 });
 
@@ -48,14 +48,14 @@ router.post("/login", async (req, res) => {
         if (isVerified) {
             res.redirect("/");
         } else {
-            res.status(401).render('log_sign', {
+            res.status(401).render('login', {
                 errorMessageLogin: "Correo electrónico o contraseña incorrectos.",
                 form: "login" // Indica que el formulario de inicio de sesión debería mostrarse
             });
         }
     } catch (error) {
         console.error("Error during login:", error);
-        res.status(500).render('log_sign', {
+        res.status(500).render('login', {
             errorMessageLogin: "Error al iniciar sesión: " + error.message,
             form: "login"
         });
@@ -68,10 +68,10 @@ router.post("/signup", async (req, res) => {
 
     try {
         await boardService.addUser(username, email, password, null);
-        res.redirect("/login");
+        res.redirect("/signup");
     } catch (error) {
         console.error("Error creating user:", error);
-        res.status(500).render('log_sign', {
+        res.status(500).render('signup', {
             errorMessageSignup: "Error al crear el usuario: " + error.message,
             form: "signup" // Indica que el formulario de registro debería mostrarse
         });

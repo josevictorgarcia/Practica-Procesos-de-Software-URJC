@@ -53,8 +53,7 @@ class UserManager {
             );
             return 'Registro de usuario exitoso';
         } catch (err) {
-            console.error("Error al crear el usuario:", err.message);
-            throw new Error("Error al crear el usuario: " + err.message);
+            throw new Error(err.message);
         }
     }
 
