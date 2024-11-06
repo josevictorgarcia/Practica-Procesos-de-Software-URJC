@@ -112,6 +112,25 @@ export async function getUserInfo(email) {
     return await userService.getUserInfo(email);
 }
 
+
+/**
+ * Actualiza la URL de la imagen de perfil de un usuario.
+ * @param {string} email - El correo electrónico del usuario.
+ * @param {string} newProfileSrc - La nueva URL de la imagen de perfil.
+ * @returns {Promise<string>} Una promesa que se resuelve con un mensaje de éxito o error.
+ */
+export async function updateProfileImage(email, newProfileSrc) {
+    const userService = new UserManager();
+    try {
+        const message = await userService.updateProfileSrc(email, newProfileSrc);
+        return message; // Mensaje de éxito de la actualización
+    } catch (error) {
+        console.error("Error actualizando imagen de perfil:", error.message);
+        throw new Error(error.message); // Lanza el error en caso de fallo
+    }
+}
+
+/** Cierra sesion del usuario */
 export async function logout() {
     user = null
     return true

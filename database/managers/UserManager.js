@@ -125,6 +125,39 @@ class UserManager {
             return false;
         }
     }
+
+    /**
+     * Actualiza la URL de la imagen de perfil de un usuario dado su correo electrónico.
+     *
+     * Este método busca al usuario en la base de datos utilizando el correo electrónico
+     * y actualiza su URL de imagen de perfil (`profile_src`).
+     *
+     * @param {string} email - El correo electrónico del usuario.
+     * @param {string} newProfileSrc - La nueva URL de la imagen de perfil.
+     * 
+     * @returns {Promise<string>} Una promesa que se resuelve con un mensaje de éxito
+     *                            o un mensaje de error si no se encuentra el usuario.
+     * 
+     * @throws {Error} Si ocurre un error durante la actualización de la base de datos.
+     */
+    async updateProfileSrc(email, newProfileSrc) {
+        try {
+            // Verifica si el correo electrónico existe en la base de datos
+            const user = await executeQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
+            if (user.length === 0) {
+                throw new Error("Usuario no encontrado.");
+            }
+
+            // Actualiza el perfil del usuario con la nueva URL de la imagen
+            await executeNonQuery(
+                "UPDATE usuarios SET profile_src = ? WHERE email = ?",
+                [newProfileSrc, email]
+            );
+            return 'Imagen de perfil actualizada exitosamente';
+        } catch (err) {
+            throw new Error(err.message);
+        }
+    }
 }
 export default UserManager;
 

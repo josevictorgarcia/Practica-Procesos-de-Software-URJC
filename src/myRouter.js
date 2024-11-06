@@ -175,8 +175,11 @@ router.post('/newGame', express.json(), async (req, res) => {
         }
 
         // Llamar a la función addGame con el tipo normalizado
-        await boardService.addGame(nombre, imagen, url, tipoNormalizado);
-        res.status(200).send('Agregado correctamente');
+        if (await boardService.addGame(nombre, imagen, url, tipoNormalizado)){
+            res.status(200).send('Error al agregar el juego');
+        }
+
+        res.status(400).send("Error al agregar el juego")
     } catch (error) {
         console.error(error);  // Es útil ver el error en consola para depuración
         res.status(500).send('Error al agregar el juego: ' + error.message);
@@ -188,11 +191,18 @@ router.get('/profile', (req, res) => {
 });
 
 /*Añade un post y define sus componentes */
-router.post('/post/edit', (req, res) => {
-    let { nombre, imagen, url, tipo } = req.body;
+router.post('/user/edit', async (req, res) => {
+    try {
+        let { email, imagen } = req.body;
 
-    boardService.addPost({ nombre, imagen, url, tipo }, req.body.id);
-    res.redirect('/');//nos redirige a la pagina index
+        if (await boardService.updateProfileImage(email, imagen)){
+            res.redirect('/');//nos redirige a la pagina index
+        }
+
+    } catch (error) {
+        console.error(error);  // Es útil ver el error en consola para depuración
+        res.status(500).send('Error al cambiar la imagen: ' + error.message);
+    }
 });
 
 export default router;
