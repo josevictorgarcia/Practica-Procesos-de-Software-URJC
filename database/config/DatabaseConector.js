@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
 import sqlite3 from "sqlite3";
+import { __dirname } from './../../src/dirname.js';
 
 dotenv.config();
 
 // Set the path to your SQLite3 database file
-const databasePath = process.env.DATABASE_PATH;
+const databasePath = __dirname + "/../database/database.db";
 
 if (!databasePath) {
   console.error('La ruta de la base de datos no está definida en las variables de entorno.');
