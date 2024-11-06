@@ -41,6 +41,7 @@ class UserManager {
      */
     async addUser(nombre, email, contraseña, profileSrc) {
         try {
+            console.log(nombre, email, contraseña, profileSrc)
             const existingUser = await executeQuery("SELECT * FROM usuarios WHERE email = ?", [email]);
             if (existingUser.length > 0) {
                 throw new Error("El correo electrónico ya está en uso.");
