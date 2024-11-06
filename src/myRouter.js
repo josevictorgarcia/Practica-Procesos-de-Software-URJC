@@ -40,9 +40,29 @@ router.get("/signup", (req, res) => {
 
 // POST route for login
 router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
 
     try {
+        // Convertir el correo electrónico a cadena y validar el formato
+        email = String(email).trim();
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).render('login', {
+                errorMessageLogin: "Por favor ingresa un correo electrónico válido.",
+                form: "login"
+            });
+        }
+
+        // Convertir la contraseña a cadena y validar longitud y caracteres especiales
+        password = String(password).trim();
+        if (password.length < 6 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return res.status(400).render('login', {
+                errorMessageLogin: "La contraseña debe tener al menos 6 caracteres, incluyendo letras, números y caracteres especiales.",
+                form: "login"
+            });
+        }
+
+        // Verificar el usuario
         const isVerified = await boardService.verifyUser(email, password);
 
         if (isVerified) {
@@ -50,7 +70,7 @@ router.post("/login", async (req, res) => {
         } else {
             res.status(401).render('login', {
                 errorMessageLogin: "Correo electrónico o contraseña incorrectos.",
-                form: "login" // Indica que el formulario de inicio de sesión debería mostrarse
+                form: "login"
             });
         }
     } catch (error) {
@@ -64,10 +84,40 @@ router.post("/login", async (req, res) => {
 
 // POST route for signup
 router.post("/signup", async (req, res) => {
-    const { email, name, password } = req.body;
+    let { email, name, password } = req.body;
 
     try {
-        const default_profile_image = 'data:image/jpeg;base64,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'
+        // Convertir el nombre a cadena
+        name = String(name).trim();
+        if (!name || name.length < 3) {
+            return res.status(400).render('signup', {
+                errorMessageSignup: "El nombre debe tener al menos 3 caracteres.",
+                form: "signup"
+            });
+        }
+
+        // Convertir el correo electrónico a cadena y validar el formato
+        email = String(email).trim();
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).render('signup', {
+                errorMessageSignup: "Por favor ingresa un correo electrónico válido.",
+                form: "signup"
+            });
+        }
+
+        // Convertir la contraseña a cadena y validar longitud y caracteres especiales
+        password = String(password).trim();
+        if (password.length < 6 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+            return res.status(400).render('signup', {
+                errorMessageSignup: "La contraseña debe tener al menos 6 caracteres, incluyendo letras, números y caracteres especiales.",
+                form: "signup"
+            });
+        }
+
+        // Establecer una imagen de perfil predeterminada
+        const default_profile_image = 'data:image/jpeg;base64,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'
+        
         const user_sign_up = await boardService.addUser(name, email, password, default_profile_image);
         const isVerified = await boardService.verifyUser(email, password);
 
@@ -78,7 +128,7 @@ router.post("/signup", async (req, res) => {
         console.error("Error creating user:", error);
         res.status(500).render('signup', {
             errorMessageSignup: "Error al crear el usuario: " + error.message,
-            form: "signup" // Indica que el formulario de registro debería mostrarse
+            form: "signup"
         });
     }
 });
