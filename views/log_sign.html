@@ -1,44 +1,146 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gamming Zone</title>
+    <title>Gamming Zone - Login & Signup</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom CSS -->
     <link href="/css/newStyle.css" rel="stylesheet" />
 
     <!-- Google Fonts for modern typography -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
 
     <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif"
-      type="image/x-icon"
-    />
-  </head>
+    <link rel="shortcut icon" href="https://cdn.dribbble.com/users/812515/screenshots/4342121/800-logo.gif" type="image/x-icon" />
 
-  <body id="main" class="background1">
+    <style>
+      .form-toggle { display: none; } /* Hide forms initially */
+      .active { display: block; } /* Show active form */
+    </style>
+</head>
+
+<body id="main" class="background1">
     <!-- Include Navbar -->
     {{> partials/navbar }}
 
-    <!-- Seccion del Sign In and Sign Up -->
+    <div class="container mt-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+        <div class="card p-4 text-white bg-dark" style="width: 100%; max-width: 400px; border: none; border-radius: 10px;">
+
+            <!-- Login Form -->
+            <div id="loginForm" class="form-toggle active">
+                <h3 class="text-center mb-4">Iniciar Sesión</h3>
+                
+                <!-- Show error message if exists for login -->
+                {{#errorMessageLogin}}
+                <div id="errorMessageLogin" class="alert alert-danger text-center" role="alert">
+                    {{errorMessageLogin}}
+                </div>
+                {{/errorMessageLogin}}
+                
+                <form action="/login" method="POST">
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="loginEmail" name="email" placeholder="nombre@ejemplo.com" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Contraseña" required />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 mt-2">Iniciar Sesión</button>
+                    <div class="text-center mt-3">
+                        <small>¿No tienes una cuenta? <a href="#" onclick="toggleForm('signupForm')">Regístrate</a></small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div id="signupForm" class="form-toggle">
+                <h3 class="text-center mb-4">Crear una Cuenta</h3>
+
+                <!-- Show error message if exists for signup -->
+                {{#errorMessageSignup}}
+                <div id="errorMessageSignup" class="alert alert-danger text-center" role="alert">
+                    {{errorMessageSignup}}
+                </div>
+                {{/errorMessageSignup}}
+                
+                <form action="/signup" method="POST">
+                    <div class="mb-3">
+                        <label for="signupEmail" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="signupEmail" name="email" placeholder="nombre@ejemplo.com" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupUsername" class="form-label">Nombre de Usuario</label>
+                        <input type="text" class="form-control" id="signupUsername" name="username" placeholder="Nombre de usuario" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="signupPassword" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="signupPassword" name="password" placeholder="Contraseña" required />
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 mt-2">Registrarse</button>
+                    <div class="text-center mt-3">
+                        <small>¿Ya tienes una cuenta? <a href="#" onclick="toggleForm('loginForm')">Inicia Sesión</a></small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Include Footer -->
     {{> partials/footer }}
 
+    <!-- JavaScript for Form Toggle and Error Message Handling -->
+    <script>
+      function toggleForm(formId) {
+          // Clear any existing error message when switching forms
+          clearErrorMessages();
+
+          // Toggle forms
+          document.getElementById('loginForm').classList.remove('active');
+          document.getElementById('signupForm').classList.remove('active');
+          document.getElementById(formId).classList.add('active');
+      }
+
+      function clearErrorMessages() {
+          const errorMessageLogin = document.getElementById('errorMessageLogin');
+          const errorMessageSignup = document.getElementById('errorMessageSignup');
+          
+          if (errorMessageLogin) {
+              setTimeout(() => { errorMessageLogin.style.display = 'none'; }, 5000);
+          }
+          if (errorMessageSignup) {
+              setTimeout(() => { errorMessageSignup.style.display = 'none'; }, 5000);
+          }
+      }
+
+      // Automatically show the relevant form based on the form variable passed from the server
+      window.onload = function () {
+          const formType = "{{form}}";
+          if (formType === "signup") {
+              toggleForm("signupForm");
+          } else {
+              toggleForm("loginForm");
+          }
+
+          // Set timeout to hide error message after 5 seconds for both forms
+          const errorMessageLogin = document.getElementById('errorMessageLogin');
+          const errorMessageSignup = document.getElementById('errorMessageSignup');
+          
+          if (errorMessageLogin) {
+              setTimeout(() => { errorMessageLogin.style.display = 'none'; }, 5000);
+          }
+          if (errorMessageSignup) {
+              setTimeout(() => { errorMessageSignup.style.display = 'none'; }, 5000);
+          }
+      };
+    </script>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Script JS -->
-
-  </body>
+</body>
 </html>

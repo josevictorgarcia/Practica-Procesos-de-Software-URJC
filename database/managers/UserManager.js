@@ -116,14 +116,14 @@ class UserManager {
         try {
             const user = await executeQuery("SELECT nombre, email, profile_src FROM usuarios WHERE email = ?", [email]);
             if (user.length === 0) {
-                throw new Error("Usuario no encontrado");
+                return false;
             }
 
             // Retorna la información del usuario sin incluir la contraseña
             return user[0];
         } catch (err) {
             console.error("Error al obtener información del usuario:", err.message);
-            throw new Error("Usuario no encontrado");
+            return false;
         }
     }
 }

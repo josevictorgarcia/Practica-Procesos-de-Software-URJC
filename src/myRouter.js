@@ -9,13 +9,11 @@ router.get('/', async (req, res) => { // Cambia a función asíncrona
         const cartas = await boardService.getCartas(); // Espera a que se resuelva la promesa
         const mesa = await boardService.getMesa(); // Espera a que se resuelva la promesa
         const accion = await boardService.getAccion(); // Espera a que se resuelva la promesa
-        const user = boardService.isLogedIn();
-        let nombre;
-        let foto;
+        const user = await boardService.isLogedIn();
+        let nombre, foto
         if(user){
-            const userData = boardService.getUserData();
-            nombre = userData.nombre;
-            foto = userData.foto;
+            nombre = user.nombre;
+            foto = user.profile_src;
         }
 
         // Renderiza la vista pasando los datos
@@ -26,15 +24,64 @@ router.get('/', async (req, res) => { // Cambia a función asíncrona
     }
 })
 
+// GET route for login
 router.get("/login", (req, res) => {
-    // Implementa la lógica de inicio de sesión
-    res.render('log_sign', {});
-})
+    res.render('log_sign', {
+        form: "login" // Indica que se debe mostrar el formulario de inicio de sesión
+    });
+});
 
+// GET route for signup
 router.get("/signup", (req, res) => {
-    // Implementa la lógica de registro
-    res.render('log_sign', {});
-})
+    res.render('log_sign', {
+        form: "signup" // Indica que se debe mostrar el formulario de registro
+    });
+});
+
+// POST route for login
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const isVerified = await boardService.verifyUser(email, password);
+
+        if (isVerified) {
+            res.redirect("/");
+        } else {
+            res.status(401).render('log_sign', {
+                errorMessageLogin: "Correo electrónico o contraseña incorrectos.",
+                form: "login" // Indica que el formulario de inicio de sesión debería mostrarse
+            });
+        }
+    } catch (error) {
+        console.error("Error during login:", error);
+        res.status(500).render('log_sign', {
+            errorMessageLogin: "Error al iniciar sesión: " + error.message,
+            form: "login"
+        });
+    }
+});
+
+// POST route for signup
+router.post("/signup", async (req, res) => {
+    const { email, username, password } = req.body;
+
+    try {
+        await boardService.addUser(username, email, password, null);
+        res.redirect("/login");
+    } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).render('log_sign', {
+            errorMessageSignup: "Error al crear el usuario: " + error.message,
+            form: "signup" // Indica que el formulario de registro debería mostrarse
+        });
+    }
+});
+
+router.get('/logout', async (req, res) => {
+    await boardService.logout()
+    res.redirect('/'); // Redirige a la página principal
+});
 
 router.get('/newGame', (req, res) => {
     res.render('new', {});

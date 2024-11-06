@@ -30,8 +30,7 @@ export function isLogedIn() {
 export async function getUserData(email) {
     const userManager = new UserManager();
     try {
-        const userInfo = await userManager.getUserInfo(email);
-        return userInfo; // Devuelve el userInfo
+        return await userManager.getUserInfo(email);; // Devuelve el userInfo
     } catch (error) {
         console.error(error);
         throw error; // Opcional: vuelve a lanzar el error para manejarlo en otro lugar
@@ -111,6 +110,11 @@ export async function verifyUser(email, contraseña) {
 export async function getUserInfo(email) {
     const userService = new UserManager();
     return await userService.getUserInfo(email);
+}
+
+export async function logout() {
+    user = null
+    return true
 }
 
 // Ejemplo de uso
