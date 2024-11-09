@@ -153,8 +153,10 @@ class UserManager {
                 "UPDATE usuarios SET profile_src = ? WHERE email = ?",
                 [newProfileSrc, email]
             );
+            //console.log("Imagen de perfil actualizada exitosamente"); // Debugging statement
             return 'Imagen de perfil actualizada exitosamente';
         } catch (err) {
+            console.error("Error actualizando imagen de perfil:", err.message);
             throw new Error(err.message);
         }
     }

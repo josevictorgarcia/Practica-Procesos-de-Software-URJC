@@ -133,14 +133,19 @@ router.post("/signup", async (req, res) => {
     }
 });
 
+
 router.get('/logout', async (req, res) => {
     await boardService.logout()
     res.redirect('/'); // Redirige a la página principal
 });
 
-router.get('/newGame', (req, res) => {
-    res.render('new', {});
-})
+router.get('/newGame', async (req, res) => {
+    const user = await boardService.isLogedIn();
+    if (!user) {
+        return res.redirect('/login');
+    }
+    res.render('new', { user });
+});
 
 router.post('/newGame', express.json(), async (req, res) => {
     try {
@@ -186,14 +191,23 @@ router.post('/newGame', express.json(), async (req, res) => {
     }
 });
 
-router.get('/profile', (req, res) => { 
-    res.render('profile');
+// GET route for edit profile
+router.get('/profile', async (req, res) => {
+    const user = await boardService.isLogedIn();
+    if (!user) {
+        return res.redirect('/login');
+    }
+    const defaultProfileImage = 'data:image/jpeg;base64,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';
+    const isDefaultImage = user.profile_src === defaultProfileImage;
+    res.render('profile', { user, isDefaultImage });
 });
 
-/*Añade un post y define sus componentes */
-router.post('/user/edit', async (req, res) => {
+// POST route for editing profile
+router.post('/post/edit', async (req, res) => {
     try {
         let { email, imagen } = req.body;
+        //console.log("Email:", email); // Debugging statement
+        //console.log("Imagen:", imagen); // Debugging statement
 
         if (await boardService.updateProfileImage(email, imagen)){
             res.redirect('/');//nos redirige a la pagina index
