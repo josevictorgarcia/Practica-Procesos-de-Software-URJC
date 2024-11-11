@@ -112,15 +112,6 @@ export async function getUserInfo(email) {
     return await userService.getUserInfo(email);
 }
 
-/** Funcion parea actualizar imagen del usuario */
-export async function updateUserProfileImg(profile_image) {
-    try{
-        user.profile_src = profile_image;
-        return true;
-    }catch{
-        return false
-    }
-}
 
 /**
  * Actualiza la URL de la imagen de perfil de un usuario.
@@ -131,6 +122,7 @@ export async function updateUserProfileImg(profile_image) {
 export async function updateProfileImage(email, newProfileSrc) {
     const userService = new UserManager();
     try {
+        user.profile_src = profile_image;
         const message = await userService.updateProfileSrc(email, newProfileSrc);
         return message; // Mensaje de éxito de la actualización
     } catch (error) {
