@@ -208,10 +208,12 @@ router.post('/post/edit', async (req, res) => {
         let { email, imagen } = req.body;
         //console.log("Email:", email); // Debugging statement
         //console.log("Imagen:", imagen); // Debugging statement
+        boardService.
 
         if (await boardService.updateProfileImage(email, imagen)){
             res.redirect('/');//nos redirige a la pagina index
         }
+        
 
     } catch (error) {
         console.error(error);  // Es útil ver el error en consola para depuración
