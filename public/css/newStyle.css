@@ -62,26 +62,25 @@ body {
   display: flex;
   align-items: center;
   justify-content: right;
+  position: absolute;
   padding: 10px;
   position: relative;
   margin-right: 4%;
+  width: 211px;
 }
 
-
 .userProfile img {
-  width: 50px;
-  /* Tamaño de la imagen del perfil */
+  width: 50px; /* Tamaño de la imagen del perfil */
   height: 50px;
-  border-radius: 50%;
-  /* Hace la imagen circular */
-  margin-right: 10px;
-  /* Espacio entre la imagen y el nombre */
+  border-radius: 50%; /* Hace la imagen circular */
+  margin-right: 10px; /* Espacio entre la imagen y el nombre */
 }
 
 .userProfile span {
   font-size: 18px;
   font-weight: bold;
   color: white;
+  min-width: 130px;
 }
 
 .submenu {
@@ -93,7 +92,7 @@ body {
   display: none;
   width: 180px;
   background-color: black;
-
+  z-index: 1;
 }
 
 .userProfile:hover {
@@ -114,7 +113,7 @@ body {
   -ms-flex-align: center;
   padding: 10px;
   position: relative;
-  right: 55px;
+  right: 54px;
   text-align: center;
   text-decoration: none;
   display: block;
