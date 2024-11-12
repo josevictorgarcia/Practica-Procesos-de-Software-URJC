@@ -212,6 +212,7 @@ router.post('/post/edit', async (req, res) => {
         if (await boardService.updateProfileImage(email, imagen)){
             res.redirect('/');//nos redirige a la pagina index
         }
+        
 
     } catch (error) {
         console.error(error);  // Es útil ver el error en consola para depuración

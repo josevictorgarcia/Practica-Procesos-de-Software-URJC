@@ -122,6 +122,7 @@ export async function getUserInfo(email) {
 export async function updateProfileImage(email, newProfileSrc) {
     const userService = new UserManager();
     try {
+        user.profile_src = newProfileSrc;
         const message = await userService.updateProfileSrc(email, newProfileSrc);
         return message; // Mensaje de éxito de la actualización
     } catch (error) {
