@@ -14,7 +14,7 @@ async function enviarFormulario() {
 
     // Validar que imagen sea una URL que termine en ".png"
     const urlRegex = /^(https?:\/\/[^\s]+)$/;
-    if (!urlRegex.test(data.imagen) || !data.imagen.endsWith('.png')) {
+    if (!urlRegex.test(data.imagen) || !(data.imagen.endsWith('.png') || data.imagen.endsWith('.jpg'))) {
         alert('La imagen debe ser una URL válida que termine en ".png".');
         return;
     }
