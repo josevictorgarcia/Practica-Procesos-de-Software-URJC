@@ -181,10 +181,10 @@ router.post('/newGame', express.json(), async (req, res) => {
 
         // Llamar a la función addGame con el tipo normalizado
         if (await boardService.addGame(nombre, imagen, url, tipoNormalizado)){
-            res.status(200).send('Error al agregar el juego');
+            res.status(200).send('Juego agregado corrcetamente');
         }
 
-        res.status(400).send("Error al agregar el juego")
+        res.status(200).redirect('/')
     } catch (error) {
         console.error(error);  // Es útil ver el error en consola para depuración
         res.status(500).send('Error al agregar el juego: ' + error.message);
@@ -208,7 +208,7 @@ router.post('/post/edit', async (req, res) => {
         let { email, imagen } = req.body;
         //console.log("Email:", email); // Debugging statement
         //console.log("Imagen:", imagen); // Debugging statement
-        boardService.
+        // boardService.
 
         if (await boardService.updateProfileImage(email, imagen)){
             res.redirect('/');//nos redirige a la pagina index
