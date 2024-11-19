@@ -50,12 +50,16 @@
         <input type="hidden" name="id" value="{{FormData.id}}">
         <div class="formField col-md-12">
             <label for="InputEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="InputEmail" value="{{user.email}}" name='email' required>
+            <input type="email" class="form-control" id="InputEmail" value="{{user.email}}" disabled>
+            <input type="hidden" name="email" value="{{user.email}}">
+            <!-- El campo hidden envía el email de momento, ya que la funcionalidad para editar user.email no está incorporada en este sprint -->
+            <!-- Eliminar campo hidden al incluir la funcionalidad -->
+
             <div id="email" class="invalid-feedback"></div>
         </div>
         <div class="formField col-md-12">
             <label for="InputNombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="InputNombre" value="{{user.nombre}}" name='nombre' required>
+            <input type="text" class="form-control" id="InputNombre" value="{{user.nombre}}" name='nombre' disabled>
             <div id="nombre" class="invalid-feedback"></div>
         </div>
         <div class="formField col-md-12">
