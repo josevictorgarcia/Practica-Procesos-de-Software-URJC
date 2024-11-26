@@ -155,6 +155,23 @@ body {
   color: black;
 }
 
+#botonOscuro{
+  padding: 10px 20px;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 500;
+}
+
+#botonOscuro:hover {
+  background-color: white;
+  color: black;
+}
+
 /* Card Styles */
 .card {
   width: 100%;
