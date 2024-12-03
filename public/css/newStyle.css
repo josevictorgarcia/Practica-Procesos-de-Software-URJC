@@ -13,6 +13,10 @@ body {
   background-color: rgb(16, 16, 16);
   height: 100%;
 }
+/* Background */
+.background1.light-mode {
+  background-color: rgb(255, 255, 255);
+}
 
 /* Cabecera de la web */
 .pageTop {
@@ -156,6 +160,14 @@ body {
 h3 {
   color: white;
   margin-bottom: 20px;
+}
+
+#botonClaro {
+  background-color: red !important;
+}
+#botonClaro:hover {
+  background-color: rgb(198, 0, 0) !important;
+  color: white !important;
 }
 
 /* Media Queries for Better Responsiveness */
