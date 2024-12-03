@@ -220,4 +220,25 @@ router.post('/post/edit', async (req, res) => {
     }
 });
 
+router.get('/game', async (req, res) => { // Cambia a función asíncrona
+    try {
+        // Usa await para obtener los datos
+        const cartas = await boardService.getCartas(); // Espera a que se resuelva la promesa
+        const mesa = await boardService.getMesa(); // Espera a que se resuelva la promesa
+        const accion = await boardService.getAccion(); // Espera a que se resuelva la promesa
+        const user = await boardService.isLogedIn();
+        let nombre, foto
+        if(user){
+            nombre = user.nombre;
+            foto = user.profile_src;
+        }
+
+        // Renderiza la vista pasando los datos
+        res.render('game', {user,nombre,foto,cartas, mesa, accion});
+    } catch (error) {
+        console.error("Error al obtener los juegos:", error);
+        res.status(500).send("Error al obtener los juegos");
+    }
+})
+
 export default router;
