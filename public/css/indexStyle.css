@@ -15,6 +15,12 @@ body {
 }
 
 /*Cabecera*/
+/* Background */
+.background1.light-mode {
+  background-color: rgb(255, 255, 255);
+}
+
+/* Cabecera de la web */
 .pageTop {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
   background-size: auto;
@@ -223,8 +229,8 @@ body {
 #botonOscuro {
   padding: 10px 20px;
   color: white;
-  background-color: transparent;
-  border: 2px solid white;
+  /* background-color: transparent; */
+  /* border: 2px solid white; */
   border-radius: 6px;
   text-align: center;
   text-decoration: none;
@@ -235,6 +241,13 @@ body {
 #botonOscuro:hover {
   background-color: white;
   color: black;
+}
+#botonClaro {
+  background-color: red !important;
+}
+#botonClaro:hover {
+  background-color: rgb(198, 0, 0) !important;
+  color: white !important;
 }
 
 /* Card Styles */
