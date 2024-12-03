@@ -17,27 +17,13 @@ body {
 /*Cabecera*/
 /* Background */
 .background1.light-mode {
-  background-color: rgb(255, 255, 255);
+  /*background-color: #781010;*/
+  background-color: #cacacb;
 }
 
 /* Cabecera de la web */
 .pageTop {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
-  background-size: auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-}
-
-.pageTop.lightMode {
-  background-color: #1e7e34;
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -63,15 +49,7 @@ body {
   border: 4px solid black;
 }
 
-#logoContainer.lightMode {
-  margin-left: 4%;
-  height: 115px;
-  width: 115px;
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
+#logoContainer.light-mode {
   border: 4px solid #cacacb;
 }
 
@@ -119,6 +97,7 @@ body {
   min-width: 130px;
 }
 
+
 .submenu {
   list-style: none;
   margin: 0;
@@ -127,19 +106,7 @@ body {
   right: 4%;
   display: none;
   width: 180px;
-  background-color: black;
-  z-index: 1;
-}
-
-.submenu.lightMode {
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  top: 88%;
-  right: 4%;
-  display: none;
-  width: 180px;
-  background-color: #cacacb;
+  /*background-color: black;*/
   z-index: 1;
 }
 
@@ -167,35 +134,9 @@ body {
   display: block;
 }
 
-.submenu li a.lightMode {
-  background-color: #cacacb;
-  width: 211px;
-  color: #000;
-  display: flex;
-  -ms-flex-align: center;
-  padding: 10px;
-  position: relative;
-  right: 54px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-}
-
 .submenu li a:hover {
   background-color: #fff;
   color: black;
-  display: block;
-  -ms-flex-align: center;
-  margin-right: auto;
-  padding: auto;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-}
-
-.submenu li a:hover.lightMode {
-  background-color: #1e7e34;
-  color: white;
   display: block;
   -ms-flex-align: center;
   margin-right: auto;
@@ -284,6 +225,20 @@ h3 {
   margin-bottom: 20px;
   padding: 10px 50px;
   background: linear-gradient(180deg, rgb(236 0 42) 0%, rgb(39, 38, 38) 100%);
+  border-radius: 8px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px; /* Espaciado entre letras */
+  /*box-shadow: 0 0 15px rgba(104, 104, 104, 0.774), 0 0 10px rgba(74, 74, 74, 0.162); /* Efecto de sombra brillante */
+  position: relative;
+  overflow: hidden;
+}
+
+.light-mode h3 {
+  color: white;
+  margin-bottom: 20px;
+  padding: 10px 50px;
+  background: linear-gradient(180deg, rgb(33 136 29) 0%, rgb(39, 38, 38) 100%);
   border-radius: 8px;
   text-align: center;
   text-transform: uppercase;

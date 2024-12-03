@@ -1,34 +1,40 @@
-<header class="container-fluid text-center py-3 pageTop">
-    <div id="logoContainer">
-        <img
-            id="logoArcade"
-            src="/img/arcade.jpeg"
-            alt="Arcade logo"
-            class="mb-2"
-        />
-    </div>
-    <nav class="navBar1">
-        <a href="/" class="buttonNavBar">Inicio</a>
-        <a href="#" class="buttonNavBar">Reglas</a>
-        <a href="#" class="buttonNavBar">Sobre Nosotros</a>
-        <a href="/newGame" class="buttonNavBar">Nuevo Juego</a>
-        <button id="botonClaro" class="buttonNavBar" onclick="toggleTheme()">Modo Claro</button>
-    </nav>
-    {{#user}} <!-- LOGGED IN -->
-    <div class="userProfile">
-        <img src="{{profile_src}}" alt="Foto de perfil"/>
-        <span>{{nombre}}</span>
-        <ul class="submenu">
-            <li><a href="/profile">Perfil</a></li>
-            <li><a href="/newGame">Agregar nuevo juego</a></li>
-            <li><a href="/logout">Cerrar sesión</a></li>
-        </ul>
-    </div>
-    {{/user}}
-
-    {{^user}} <!-- NOT LOGGED IN -->
-    <div class="userProfile">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhAIBwgPEBUS
+<header
+  class="container-fluid text-center py-3 pageTop light-mode"
+  id="pageTop"
+>
+  <div id="logoContainer">
+    <img
+      id="logoArcade"
+      src="/img/arcade.jpeg"
+      alt="Arcade logo"
+      class="mb-2"
+    />
+  </div>
+  <nav class="navBar1" id="navbarid">
+    <a href="/" class="buttonNavBar">Inicio</a>
+    <a href="#" class="buttonNavBar">Reglas</a>
+    <a href="#" class="buttonNavBar">Sobre Nosotros</a>
+    <a href="/newGame" class="buttonNavBar">Nuevo Juego</a>
+    <button id="botonClaro" class="buttonNavBar" onclick="toggleTheme()">
+      Modo Claro
+    </button>
+  </nav>
+  {{#user}}
+  <!-- LOGGED IN -->
+  <div class="userProfile">
+    <img src="{{profile_src}}" alt="Foto de perfil" />
+    <span id="usernickname">{{nombre}}</span>
+    <ul class="submenu light-mode" id="submenu">
+      <li><a href="/profile">Perfil</a></li>
+      <li><a href="/newGame">Agregar nuevo juego</a></li>
+      <li><a href="/logout">Cerrar sesión</a></li>
+    </ul>
+  </div>
+  {{/user}} {{^user}}
+  <!-- NOT LOGGED IN -->
+  <div class="userProfile">
+    <img
+      src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBhAIBwgPEBUS
         FxEXFhMVDg8PEQ8QGR0XFhcWFhcZHSghJCYlHRYWITEtJSktLi46Fx8zODMsNygtLisBCgoKDQ0NDg0NDy0ZF
         Rk3LSsrKysrLSsrKysrNysrKysrKys3KysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIAN4A3gMBIg
         ACEQEDEQH/xAAbAAEAAwEBAQEAAAAAAAAAAAAABAUGAwIBB//EADUQAQABAwIBCQYFBQEAAAAAAAABAgMEBRE
@@ -52,13 +58,15 @@
         bl3Mu/zlc+EdVMJOtZn5jI5u3Ps0fuq65+iuWJQAAAAAAAAAAAFlpGoTi181dq9if2z2+Ha0kTvG8SxK/wBBz
         ZuUflbk8af6e+ns+CVYtwAAAAAAAAAEHV8r8thzyZ41cI7u2fJOZrXb/O5vNxPCjh8emQquAVAAAAAAAAAAAA
         B7s3arN2LlE8Ynd4AbOxdpvWYu0TwqiJe1R+Hb/Ks1WJn+njHhPT6/NbooAAAAAAAD5XVFFE1T1bz5MZcrm5X
-        NyemZmfNq9UrmjTrlUf6z68PqyREoAoAAAAAAAAAAAAAAn6Ld5rUKY34Vb0+fR6xDTsbj1TRfprjqmn5tnKVY+AAAA//Z" alt="Usuario Invitado"/>
-        <span>Usuario Invitado</span>
-        <ul class="submenu">
-            <li><a href="/login">Iniciar Sesion</a></li>
-            <!-- Aquí está el cambio: en vez de href="/signup" llamamos al toggleForm -->
-            <li><a href="/signup">Registrarse</a></li>
-        </ul>
-    </div>
-    {{/user}}
+        NyemZmfNq9UrmjTrlUf6z68PqyREoAoAAAAAAAAAAAAAAn6Ld5rUKY34Vb0+fR6xDTsbj1TRfprjqmn5tnKVY+AAAA//Z"
+      alt="Usuario Invitado"
+    />
+    <span>Usuario Invitado</span>
+    <ul class="submenu">
+      <li><a href="/login">Iniciar Sesion</a></li>
+      <!-- Aquí está el cambio: en vez de href="/signup" llamamos al toggleForm -->
+      <li><a href="/signup">Registrarse</a></li>
+    </ul>
+  </div>
+  {{/user}}
 </header>
