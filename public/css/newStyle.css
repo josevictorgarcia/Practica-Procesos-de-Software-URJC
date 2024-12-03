@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: rgb(16, 16, 16);
-  min-height: 100vh;
+  height: 100%;
 }
 /* Background */
 .background1.light-mode {
@@ -184,11 +184,6 @@ h3 {
   }
 }
 
-.footer {
-  bottom: 0;
-  position: fixed;
-}
-
 /* Parte nueva*/
 .titulo {
   /*el titulo se coloca a la izquierda y con margenes en la derecha y abajo*/
@@ -242,15 +237,34 @@ a:hover {
 
 /*Para que se quede abajo del todo*/
 .footer{
-  position: relative;
+  position: fixed;
   background-color: rgb(39, 38, 38);
   width: 100%;
+  bottom: 0;
 }
 
 .footerWords{
   padding: 50px;
 }
 
+/*ESTILO PARA EL IFRAME*/
+.gameContainer{
+  margin: 50px;
+  display: flex;
+  flex-direction:row;
+  height: 100%;
+}
+
+.iframeGame{
+  height: 500px;
+  width: 75%;
+}
+
+.gameDesc{
+  width: 25%;
+  height: 100%;
+  margin: 40px;
+}
 /*Aqui termina la columna de la derecha (mitad derecha) de la pantalla*/
 
 /* Media Queries for Better Responsiveness */
@@ -266,6 +280,20 @@ a:hover {
     display: flex; 
     flex-direction: column; 
     align-items: start;
+  }
+}
+
+@media (max-width: 1200px) {
+  .gameContainer{
+    flex-direction: column;
+  }
+  
+  .gameDesc{
+    width: 100%;
+  }
+
+  .footer{
+    position: relative;
   }
 }
 
