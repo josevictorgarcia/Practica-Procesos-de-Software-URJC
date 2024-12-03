@@ -14,24 +14,9 @@ body {
   min-height: 100vh;
 }
 
-/*Cabecera*/
+/* Cabecera de la web */
 .pageTop {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
-  background-size: auto;
-  background-position: center;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-}
-
-.pageTop.lightMode {
-  background-color: #1e7e34;
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,18 +40,6 @@ body {
   overflow: hidden;
   position: relative;
   border: 4px solid black;
-}
-
-#logoContainer.lightMode {
-  margin-left: 4%;
-  height: 115px;
-  width: 115px;
-  display: flex;
-  justify-content: center;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  border: 4px solid #cacacb;
 }
 
 /* Logo */
@@ -125,18 +98,6 @@ body {
   z-index: 1;
 }
 
-.submenu.lightMode {
-  list-style: none;
-  margin: 0;
-  position: absolute;
-  top: 88%;
-  right: 4%;
-  display: none;
-  width: 180px;
-  background-color: #cacacb;
-  z-index: 1;
-}
-
 .userProfile:hover {
   background-color: black;
   border-radius: 10px;
@@ -161,35 +122,9 @@ body {
   display: block;
 }
 
-.submenu li a.lightMode {
-  background-color: #cacacb;
-  width: 211px;
-  color: #000;
-  display: flex;
-  -ms-flex-align: center;
-  padding: 10px;
-  position: relative;
-  right: 54px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-}
-
 .submenu li a:hover {
   background-color: #fff;
   color: black;
-  display: block;
-  -ms-flex-align: center;
-  margin-right: auto;
-  padding: auto;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-}
-
-.submenu li a:hover.lightMode {
-  background-color: #1e7e34;
-  color: white;
   display: block;
   -ms-flex-align: center;
   margin-right: auto;
@@ -220,7 +155,7 @@ body {
   color: black;
 }
 
-#botonOscuro {
+#botonOscuro{
   padding: 10px 20px;
   color: white;
   background-color: transparent;
@@ -360,7 +295,7 @@ h3 {
 }
 
 /*Para que se quede abajo del todo*/
-.footer {
+.footer{
   background-color: rgb(39, 38, 38);
   width: 100%;
 }

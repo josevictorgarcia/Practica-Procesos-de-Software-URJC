@@ -1,0 +1,280 @@
+/* General */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Background */
+.background1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(16, 16, 16);
+  min-height: 100vh;
+}
+
+/* Cabecera de la web */
+.pageTop {
+  background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#logoContainer {
+  margin-left: 4%;
+  height: 115px;
+  width: 115px;
+  display: flex;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  border: 4px solid black;
+}
+
+/* Logo */
+#logoArcade {
+  margin-top: -8px;
+  height: 120px;
+  width: 120px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+
+/* Navigation Bar */
+.navBar1 {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+/* Perfil en la cabecera */
+.userProfile {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  position: absolute;
+  padding: 10px;
+  position: relative;
+  margin-right: 4%;
+  width: 211px;
+}
+
+.userProfile img {
+  width: 50px; /* Tamaño de la imagen del perfil */
+  height: 50px;
+  border-radius: 50%; /* Hace la imagen circular */
+  margin-right: 10px; /* Espacio entre la imagen y el nombre */
+}
+
+.userProfile span {
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  min-width: 130px;
+}
+
+.submenu {
+  list-style: none;
+  margin: 0;
+  position: absolute;
+  top: 88%;
+  right: 4%;
+  display: none;
+  width: 180px;
+  background-color: black;
+  z-index: 1;
+}
+
+.userProfile:hover {
+  background-color: black;
+  border-radius: 10px;
+}
+
+.userProfile:hover .submenu {
+  display: block;
+  border-radius: 10px;
+}
+
+.submenu li a {
+  background-color: black;
+  width: 211px;
+  color: #fff;
+  display: flex;
+  -ms-flex-align: center;
+  padding: 10px;
+  position: relative;
+  right: 54px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+.submenu li a:hover {
+  background-color: #fff;
+  color: black;
+  display: block;
+  -ms-flex-align: center;
+  margin-right: auto;
+  padding: auto;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+}
+
+.submenu li:last-child a {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.buttonNavBar {
+  padding: 10px 20px;
+  color: white;
+  border: 2px solid white;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 500;
+}
+
+.buttonNavBar:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Category Titles */
+h3 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Media Queries for Better Responsiveness */
+
+@media (max-width: 768px) {
+  .buttonNavBar {
+    width: auto;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-img-top {
+    max-height: 150px;
+  }
+}
+
+.footer {
+  bottom: 0;
+  position: fixed;
+}
+
+/* Parte nueva*/
+.titulo {
+  /*el titulo se coloca a la izquierda y con margenes en la derecha y abajo*/
+  text-align: left;
+  margin-left: 13px;
+  margin-bottom: 20px;
+}
+
+.Formulario {
+  /*que el formulario tenga margen arriba y que las palabras sean de color aceitunas*/
+  margin-top: 1%;
+  color: white;
+  padding:5%;
+}
+
+.formField{
+  padding-top: 1pc;
+}
+
+.formTipoButton {
+  display: flex; 
+  flex-direction: row; 
+  align-items: end;
+}
+
+input:invalid:required,
+textarea:invalid:required,
+select:invalid:required {
+  /*Para que salga en rojo si no has completado ese campo*/
+  border: 2px solid red;
+}
+
+input:valid,
+textarea:valid,
+select:valid {
+  /*Para que salga en azul cuando si has completado ese campo*/
+  border: 2px solid blue;
+}
+
+a {
+  /*texto de los botones*/
+  color: white;
+  text-decoration: none;
+  /*hace que no se subraye los botones si tienen un link*/
+}
+
+a:hover {
+  /*texto del link cuando pasas el cursor por encima*/
+  color: white;
+}
+
+/*Para que se quede abajo del todo*/
+.footer{
+  position: relative;
+  background-color: rgb(39, 38, 38);
+  width: 100%;
+}
+
+.footerWords{
+  padding: 50px;
+}
+
+/*Aqui termina la columna de la derecha (mitad derecha) de la pantalla*/
+
+/* Media Queries for Better Responsiveness */
+
+@media (max-width: 1200px) {
+  .pageTop {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .formTipoButton {
+    display: flex; 
+    flex-direction: column; 
+    align-items: start;
+  }
+}
+
+.profile-img-container {
+  width: 100%;
+  max-width: 200px; /* Adjust the maximum size as needed */
+  position: relative; /* Ensures the image is positioned relative to the container */
+}
+
+.profile-img-container::before { /* 1:1 Aspect Ratio */
+  content: "";
+  display: block;
+  padding-top: 100%; /* Ensures a 1x1 aspect ratio */
+}
+
+.profile-img {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Cover the image */
+  border-radius: 50%;
+}
