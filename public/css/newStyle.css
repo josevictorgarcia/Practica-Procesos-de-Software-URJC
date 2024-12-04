@@ -13,14 +13,14 @@ body {
   background-color: rgb(16, 16, 16);
   height: 100%;
 }
-/* Background */
 .background1.light-mode {
-  background-color: rgb(255, 255, 255);
+  /*background-color: #781010;*/
+  background-color: #cacacb;
 }
 
 /* Cabecera de la web */
 .pageTop {
-  background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/previews/013/279/683/non_2x/seamless-pattern-of-retro-old-hipster-video-game-consoles-texture-from-the-70s-80s-90s-2000s-on-a-blue-background-vector.jpg");
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -40,6 +40,10 @@ body {
   overflow: hidden;
   position: relative;
   border: 4px solid black;
+}
+
+#logoContainer.light-mode {
+  border: 4px solid #cacacb;
 }
 
 /* Logo */
@@ -86,7 +90,11 @@ body {
   color: white;
   min-width: 130px;
 }
-
+.userProfile.light-mode{
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+}
 .submenu {
   list-style: none;
   margin: 0;
@@ -151,8 +159,24 @@ body {
   font-weight: 500;
 }
 
+.buttonNavBar.light-mode {
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+  border: 2px solid white;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 500;
+  background-color: white;
+}
+
 .buttonNavBar:hover {
   background-color: white;
+  color: black;
+}
+.buttonNavBar:hover.light-mode {
+  background-color: gray;
   color: black;
 }
 
@@ -160,6 +184,23 @@ body {
 h3 {
   color: white;
   margin-bottom: 20px;
+}
+
+#botonOscuro {
+  padding: 10px 20px;
+  color: white;
+  /* background-color: transparent; */
+  /* border: 2px solid white; */
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 500;
+}
+
+#botonOscuro:hover {
+  background-color: white;
+  color: black;
 }
 
 #botonClaro {

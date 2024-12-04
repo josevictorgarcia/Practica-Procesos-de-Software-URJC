@@ -13,9 +13,6 @@ body {
   background-color: rgb(16, 16, 16);
   min-height: 100vh;
 }
-
-/*Cabecera*/
-/* Background */
 .background1.light-mode {
   /*background-color: #781010;*/
   background-color: #cacacb;
@@ -23,7 +20,7 @@ body {
 
 /* Cabecera de la web */
 .pageTop {
-  background-image: url("https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/previews/013/279/683/non_2x/seamless-pattern-of-retro-old-hipster-video-game-consoles-texture-from-the-70s-80s-90s-2000s-on-a-blue-background-vector.jpg");
   background-size: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -97,6 +94,11 @@ body {
   min-width: 130px;
 }
 
+.userProfile.light-mode{
+  background-color: #000;
+  color: white;
+  border-radius: 10px;
+}
 
 .submenu {
   list-style: none;
@@ -164,6 +166,23 @@ body {
 
 .buttonNavBar:hover {
   background-color: white;
+  color: black;
+}
+
+.buttonNavBar.light-mode {
+  padding: 10px 20px;
+  color: rgb(0, 0, 0);
+  border: 2px solid white;
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: 500;
+  background-color: white;
+}
+
+.buttonNavBar:hover.light-mode {
+  background-color: gray;
   color: black;
 }
 
@@ -277,7 +296,10 @@ h3 {
   position: relative; /* Para posicionar flechas (opcionalmente)*/
   display: flex; /* Asegura que los hijos se alineen horizontalmente */
   align-items: center; /* Centra los elementos verticalmente */
+  scrollbar-color: #ffffff transparent; /* Color de la barra y del fondo */
+  scrollbar-width: thin; /* Ancho de la barra */
 }
+
 .games-row.grid {
   display: grid;
   grid-template-columns: repeat(
