@@ -137,6 +137,11 @@ export async function logout() {
     return true
 }
 
+export async function getGameByName(name) {
+    const gameManager = new GameManager();
+    return await gameManager.getGameByName(name);
+}
+
 // Ejemplo de uso
     // (async () => {
     //     try {

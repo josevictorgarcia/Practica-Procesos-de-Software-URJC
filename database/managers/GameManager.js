@@ -64,6 +64,19 @@ class GameManager {
         }
     }
 
+    async getGameByName(name) {
+        try {
+            const game = await executeQuery("SELECT * FROM juegos WHERE nombre = ?", [name]);
+            if (game.length === 0) {
+                throw new Error("Juego no encontrado.");
+            }
+            return game[0];
+        } catch (err) {
+            console.error("Error al obtener el juego:", err.message);
+            throw err;
+        }
+    }
+
     async updateGame(id, newDetails) {
         try {
             const { nombre, imagen, url, tipo } = newDetails;

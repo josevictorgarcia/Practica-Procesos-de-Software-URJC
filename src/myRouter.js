@@ -241,4 +241,21 @@ router.get('/game', async (req, res) => { // Cambia a función asíncrona
     }
 })
 
+router.get('/game/:name', async (req, res) => {   
+    try {
+        const name = req.params.name;
+        const game = await boardService.getGameByName(name);
+        const user = await boardService.isLogedIn();
+        let nombre, foto
+        if(user){
+            nombre = user.nombre;
+            foto = user.profile_src;
+        }
+        res.render('game', {user,nombre,foto,game});
+    } catch (error) {
+        console.error("Error al obtener los juegos:", error);
+        res.status(500).send("Error al obtener los juegos");
+    }
+})
+
 export default router;
