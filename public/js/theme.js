@@ -101,6 +101,7 @@ function applySavedTheme() {
         buttonSobreNosotros.classList.add("dark-mode");
         buttonNuevoJuego.classList.add("dark-mode");
 
+        pageTop.style.backgroundImage = "url('https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg')";
         boton.textContent = "Modo Claro"; // Botón cambiará al modo claro
     } else {
         body.classList.remove("dark-mode");
@@ -111,7 +112,7 @@ function applySavedTheme() {
         buttonReglas.classList.remove("dark-mode");
         buttonSobreNosotros.classList.remove("dark-mode");
         buttonNuevoJuego.classList.remove("dark-mode");
-
+        
         body.classList.add("light-mode");
         userProfile.classList.add("light-mode");
         pageTop.classList.add("light-mode");
@@ -120,7 +121,8 @@ function applySavedTheme() {
         buttonReglas.classList.add("light-mode");
         buttonSobreNosotros.classList.add("light-mode");
         buttonNuevoJuego.classList.add("light-mode");
-
+        
+        pageTop.style.backgroundImage = "url('https://static.vecteezy.com/system/resources/previews/013/279/683/non_2x/seamless-pattern-of-retro-old-hipster-video-game-consoles-texture-from-the-70s-80s-90s-2000s-on-a-blue-background-vector.jpg')";
         boton.textContent = "Modo Oscuro"; // Botón cambiará al modo oscuro
     }
 }
