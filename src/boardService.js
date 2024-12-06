@@ -64,9 +64,15 @@ export async function getAccion() {
     return await gameManager.getAllGames("accion");
 }
 
-export async function addGame(nombre, imagen, url, tipo) {
-    const gameService = new GameManager();
-    return await gameService.addGame(nombre, imagen, url, tipo);
+export async function existNameGame(nombre) {
+    const gameManager = new GameManager();
+    return await gameManager.getGameByName(nombre);
+}
+
+export async function addGame(nombre, descripcion, imagen, url, tipo) {
+    const gameManager = new GameManager();
+    console.log(nombre, descripcion, imagen, url, tipo)
+    return await gameManager.addGame(nombre, descripcion, imagen, url, tipo);
 }
 
 
@@ -137,9 +143,13 @@ export async function logout() {
     return true
 }
 
-export async function getGameByName(name) {
+export async function getGameByName(nombre) {
     const gameManager = new GameManager();
-    return await gameManager.getGameByName(name);
+    try {
+        return await gameManager.getGameByName(nombre); // Intenta obtener el juego
+    } catch (err) {
+        return false; // Si hay un error, significa que el juego no existe
+    }
 }
 
 // Ejemplo de uso

@@ -25,7 +25,8 @@ function toggleTheme() {
         pageTop.style.backgroundImage =
             "url('https://static.vecteezy.com/system/resources/previews/002/582/112/original/seamless-abstract-casino-pattern-with-playing-cards-signs-grey-symbols-on-black-background-casino-symbols-vector.jpg')";
         logoContainer.style.border = "4px solid #000";
-        userProfile.classList.replace("light-mode", "dark-mode"); // Actualizar clase del perfil
+        userProfile.classList.remove("light-mode");
+        userProfile.classList.add("dark-mode");
 
         // Actualizar clases de los botones del navbar
         buttonInicio.classList.remove("light-mode");
@@ -48,7 +49,8 @@ function toggleTheme() {
         pageTop.style.backgroundImage =
             "url('https://static.vecteezy.com/system/resources/previews/013/279/683/non_2x/seamless-pattern-of-retro-old-hipster-video-game-consoles-texture-from-the-70s-80s-90s-2000s-on-a-blue-background-vector.jpg')";
         logoContainer.style.border = "4px solid #781010";
-        userProfile.classList.replace("dark-mode", "light-mode"); // Actualizar clase del perfil
+        userProfile.classList.remove("dark-mode");
+        userProfile.classList.add("light-mode");
 
         // Actualizar clases de los botones del navbar
         buttonInicio.classList.remove("dark-mode");

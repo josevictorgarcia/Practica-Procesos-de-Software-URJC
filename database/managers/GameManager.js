@@ -6,12 +6,12 @@ class GameManager {
         // No necesita una conexión a la base de datos, ya que utiliza las funciones exportadas
     }
 
-    async addGame(nombre, imagen, url, tipo) {
+    async addGame(nombre, descripcion, imagen, url, tipo) {
         try {
             // Usar executeNonQuery que maneja la inserción
             await executeNonQuery(
-                "INSERT INTO juegos (nombre, imagen, url, tipo) VALUES (?, ?, ?, ?)",
-                [nombre, imagen, url, tipo]
+                "INSERT INTO juegos (nombre, descripcion, imagen, url, tipo) VALUES (?, ?, ?, ?, ?)",
+                [nombre, descripcion, imagen, url, tipo]
             );
             console.log("Juego agregado correctamente.");
         } catch (err) {
@@ -21,10 +21,10 @@ class GameManager {
 
     async initializeGames() {
         const juegosIniciales = [
-            { nombre: "Blackjack", imagen: "https://images.sigma.world/blackjack-card-counting-scaled-1.jpg", url: "https://www.gamepix.com/play/las-vegas-blackjack", tipo: "cartas" },
-            { nombre: "Parchis", imagen: "https://www.mora-play.com/mora/wp-content/uploads/2023/02/ref.-66-001-scaled.jpg", url: "https://www.ludoteka.com/juegos/parchis/parchis-individual-a-4", tipo: "mesa" },
-            { nombre: "Ruleta", imagen: "https://www.rockaxis.com/img/newsList/8047148.png", url: "https://es.piliapp.com/random/wheel/", tipo: "mesa" },
-            { nombre: "Juego Shooter", imagen: "https://images.crazygames.com/games/krunker-io/cover-1591336739727.png?auto=format,compress&q=75&cs=strip", url: "https://krunker.io", tipo: "accion" }
+            { nombre: "Blackjack", imagen: "https://images.sigma.world/blackjack-card-counting-scaled-1.jpg", url: "https://www.minijuegos.com/embed/blackjack-master", tipo: "cartas", descripcion: "El Blackjack online es un emocionante juego de cartas en el que te enfrentas a la banca para alcanzar 21 puntos sin pasarte. Con reglas simples, combina estrategia y suerte mientras decides si pedir carta, plantarte o doblar tu apuesta. ¡Perfecto para desafiar tus habilidades y vivir la emoción de un casino desde cualquier lugar!" },
+            { nombre: "Parchis", imagen: "https://www.mora-play.com/mora/wp-content/uploads/2023/02/ref.-66-001-scaled.jpg", url: "https://www.minijuegos.com/embed/ludo-hero", tipo: "mesa", descripcion: "El Parchís online es un divertido juego de mesa clásico en el que compites para llevar tus fichas a la meta antes que tus oponentes. Con reglas sencillas, lanzas el dado, avanzas estratégicamente y puedes capturar fichas rivales. ¡Ideal para disfrutar con amigos o desafiar a jugadores de todo el mundo!" },
+            { nombre: "Ruleta", imagen: "https://www.rockaxis.com/img/newsList/8047148.png", url: "https://www.minijuegos.com/embed/grand-roulette", tipo: "mesa", descripcion: "La Ruleta de casino online es un emocionante juego de azar en el que apuestas al número, color o sección donde crees que caerá la bola giratoria. Con versiones clásicas como la europea y americana, es fácil de jugar y ofrece múltiples formas de ganar. ¡Siente la adrenalina en cada giro!" },
+            { nombre: "Buble Shooter", imagen: "https://www4.minijuegosgratis.com/v3/games/thumbnails/220834_7_sq.jpg", url: "https://www.minijuegos.com/embed/bubble-shooter-hd", tipo: "accion", descripcion: "Bubble Shooter online es un divertido juego de habilidad en el que disparas burbujas de colores para formar grupos de tres o más del mismo color y hacerlas explotar. Pon a prueba tu puntería y estrategia mientras limpias el tablero antes de que las burbujas te alcancen. ¡Simple, adictivo y perfecto para todas las edades!" }
         ];
 
         try {
@@ -66,9 +66,10 @@ class GameManager {
 
     async getGameByName(name) {
         try {
+            console.log(name)
             const game = await executeQuery("SELECT * FROM juegos WHERE nombre = ?", [name]);
             if (game.length === 0) {
-                throw new Error("Juego no encontrado.");
+                return false
             }
             return game[0];
         } catch (err) {

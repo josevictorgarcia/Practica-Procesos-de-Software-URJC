@@ -150,7 +150,7 @@ router.get('/newGame', async (req, res) => {
 router.post('/newGame', express.json(), async (req, res) => {
     try {
         // Desestructurar los parámetros del JSON recibido
-        const { nombre, imagen, url, tipo } = req.body;
+        const { nombre, descripcion, imagen, url, tipo } = req.body;
 
         // Validaciones de los campos
         // Validar nombre: debe ser texto y no mayor a 50 caracteres
@@ -179,8 +179,12 @@ router.post('/newGame', express.json(), async (req, res) => {
             return res.status(400).send('El tipo debe ser uno de los siguientes: cartas, mesa, o accion.');
         }
 
+        if (await boardService.existNameGame(nombre)){
+            return res.status(400).send('Ya existe un juego con ese nombre.');
+        }
+
         // Llamar a la función addGame con el tipo normalizado
-        if (await boardService.addGame(nombre, imagen, url, tipoNormalizado)){
+        if (await boardService.addGame(nombre, descripcion, imagen, url, tipoNormalizado)){
             res.status(200).send('Juego agregado corrcetamente');
         }
 
@@ -241,10 +245,12 @@ router.get('/game', async (req, res) => { // Cambia a función asíncrona
     }
 })
 
+
 router.get('/game/:name', async (req, res) => {   
     try {
         const name = req.params.name;
         const game = await boardService.getGameByName(name);
+        console.log(game)
         const user = await boardService.isLogedIn();
         let nombre, foto
         if(user){
