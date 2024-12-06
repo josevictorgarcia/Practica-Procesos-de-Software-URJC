@@ -212,6 +212,8 @@ h3 {
   color: white !important;
 }
 
+
+
 /* Media Queries for Better Responsiveness */
 
 @media (max-width: 768px) {
@@ -306,6 +308,11 @@ a:hover {
   width: 25%;
   height: 100%;
   margin: 40px;
+}
+
+.gameDesc.light-mode h1,
+.gameDesc.light-mode p {
+    color: black !important;
 }
 /*Aqui termina la columna de la derecha (mitad derecha) de la pantalla*/
 
